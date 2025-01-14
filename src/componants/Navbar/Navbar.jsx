@@ -1,6 +1,7 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import lightlogo from '../../assets/Logo/Lightlogo.png'
+import { BsCart2 } from "react-icons/bs";
 
 const Navbar = () => {
     const links =<>
@@ -11,13 +12,14 @@ const Navbar = () => {
     <Link to="" >Contact</Link>
     
     </>
+    const endNav = <>
+    <Link className='flex gap-2  pr-3'><BsCart2 className='font-bold text-lg' /><span>My Cart (0)</span></Link>
+    <Link className='bg-[#033B4C] text-white py-1 px-4 font-semibold uppercase' to="/login" >Join Us</Link>
+    </>
     return (
         <div>
-            <div className='shadowBottom bg-white'  >
-
+            <div className='shadowBottom bg-white'>
                 <div className="navbar flex justify-between w-[95%] m-auto h-[70px]">
-
-
                     <div className='navbar-start'>
                         <img src={lightlogo} className='w-64' alt="" />
                     </div>
@@ -30,7 +32,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end hidden lg:flex">
                         {/* <a href={cvpdf} target='_black'><button className="hover:bg-indigo-500 border border-indigo-600 shadow-lg shadow-indigo-500/40 py-2 rounded-lg px-4 ">Download CV</button></a> */}
-                        <Link className='bg-[#033B4C] text-white py-1 px-4 font-semibold uppercase' >Join Us</Link>
+                        {endNav}
                     </div>
 
                     <div className="navbar-end drawer drawer-end lg:hidden">
@@ -54,7 +56,7 @@ const Navbar = () => {
                         </div>
                         <div className="drawer-side">
                             <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay bg-white"></label>
-                            <ul className="menu bg-white mt-[70px] text-base-content  w-80 p-4 space-y-3" style={{
+                            <ul className="menu bg-white mt-[70px] text-base-content  md:w-80 w-52 p-4 space-y-3" style={{
                                 background: 'white',
                                 backdropFilter: 'blur( 4.5px )',
                                 webkitBackdropFilter: 'blur( 4.5px )',
@@ -62,6 +64,7 @@ const Navbar = () => {
                             }}>
                                 {/* Sidebar content here */}
                                 {links}
+                                {endNav}
                             </ul>
                         </div>
                     </div>

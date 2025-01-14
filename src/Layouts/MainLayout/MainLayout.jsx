@@ -1,12 +1,14 @@
 import React from 'react';
 import Navbar from '../../componants/Navbar/Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import '../../index.css'
 
 const MainLayout = () => {
+    const location = useLocation()
+    const path = location.pathname === '/login' || location.pathname === '/register'
     return (
         <div className='roboto-font font-semibold'>
-            <Navbar></Navbar>
+            {path || <Navbar></Navbar>}
             <Outlet></Outlet>
         </div>
     );
