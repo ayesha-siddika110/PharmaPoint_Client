@@ -3,15 +3,41 @@ import img2 from '../../assets/banner/Blue And White Modern Pharmacy Services Ba
 import SocialLogin from '../../Share/SocialLogin/SocialLogin';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../Hooks/useAuth';
 
 const Registration = () => {
     const navigate = useNavigate()
-    const { register, handleSubmit, watch, formState: { errors }, } = useForm()
+    const {updateProfileData, signUpWithEmail} = useAuth()
+    const { register, handleSubmit,  formState: { errors }, } = useForm()
     const onSubmit = (data) => {
     
         console.log(data);
+        signUpWithEmail(data?.email, data?.password)
+        .then(res=> {
+            console.log(res)
+
+            const updateDatas = {
+                displayName: data?.name,
+                photoURL: data?.photo
+            }
+            updateProfileData(updateDatas)
+            .then(res=>{
+                console.log(res);
+                navigate('/')
+                
+            })
+            .catch(err=>{
+                console.log(err);
+                
+            })
+        })
+        .catch(err=>{
+            console.log(err);
+            
+        })
 
     }
+    
     return (
         <div
             style={{

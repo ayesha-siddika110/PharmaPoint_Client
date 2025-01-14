@@ -1,5 +1,5 @@
-import React from 'react';
-import { FaGithub, FaTwitter } from 'react-icons/fa';
+
+import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 
 const SocialLogin = () => {

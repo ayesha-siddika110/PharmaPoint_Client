@@ -3,14 +3,24 @@ import img1 from '../../assets/banner/Blue And White Modern Pharmacy Services Ba
 import SocialLogin from '../../Share/SocialLogin/SocialLogin';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../Hooks/useAuth';
 
 
 
 const Login = () => {
     const navigate = useNavigate()
-    const { register, handleSubmit, watch, formState: { errors }, } = useForm()
+    const {signInwithEmail} = useAuth()
+    const { register, handleSubmit, formState: { errors }, } = useForm()
     const onSubmit = (data) => {
         console.log(data);
+        signInwithEmail(data?.email, data?.password)
+        .then(res=>{
+            console.log(res);
+            navigate("/")            
+        })
+        .catch(err=>{
+            console.log(err); 
+        })
 
     }
     return (
