@@ -1,17 +1,73 @@
 
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SocialLogin = () => {
+    const {githubLogin, GoogleLogin} = useAuth()
+    const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
+
+    const handleGoogleLogin =()=>{
+        GoogleLogin()
+        .then(res=>{
+            console.log(res);
+
+
+            const userData = {
+                userName : res.user?.displayName,
+                email: res.user?.email,
+                photo: res.user?.photoURL,
+                role: "user"
+            }
+            axiosPublic.post('/users', userData)
+            .then(res=>{
+                console.log(res.data);
+            navigate('/')
+
+                
+            })
+            
+        })
+        .catch(err=>{
+            console.log(err.massage);
+            
+        })
+
+    }
+    const handleGithubLogin =()=>{
+        githubLogin()
+        .then(res=>{
+            console.log(res);
+            const userData = {
+                userName : res.user?.displayName,
+                email: res.user?.email,
+                photo: res.user?.photoURL,
+                role: "user"
+            }
+            axiosPublic.post('/users', userData)
+            .then(res=>{
+                console.log(res.data);
+            navigate('/')
+            })
+            
+        })
+        .catch(err=>{
+            console.log(err.massage);
+            
+        })
+
+    }
     return (
         <>
         <p className='divider pt-8 pb-6'>OR</p>
         
         <div className='flex justify-center items-center md:gap-6 mx-4'>
-            <div className='text-xl px-2 bg-white  flex items-center space-x-2'><FcGoogle /> <span className='text-lg font-semibold'>Google</span></div>
-            {/* <div className='text-xl px-2 bg-sky-500 text-white  flex items-center space-x-2'><FaTwitter /><span className='text-lg font-semibold'>Twitter</span></div> */}
-            <div className='text-xl px-2 bg-white  flex items-center space-x-2'><FaGithub /><span className='text-lg font-semibold'>Github</span></div>
-            {/* <div></div> */}
+            <div onClick={handleGoogleLogin} className='text-xl px-2 bg-white  flex items-center space-x-2'><FcGoogle /> <span className='text-lg font-semibold'>Google</span></div>
+            <div onClick={handleGithubLogin} className='text-xl px-2 bg-white  flex items-center space-x-2'><FaGithub /><span className='text-lg font-semibold'>Github</span></div>
+
         </div>
         </>
     );

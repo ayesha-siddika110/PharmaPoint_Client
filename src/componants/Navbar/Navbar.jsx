@@ -1,74 +1,111 @@
 
-import { Link } from 'react-router-dom';
-import lightlogo from '../../assets/Logo/Lightlogo.png'
+import { Link, NavLink, } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import logo from '../../assets/Logo/Lightlogo.png'
 import { BsCart2 } from "react-icons/bs";
 
+
+
 const Navbar = () => {
-    const links =<>
-    <Link to="/"><a href='#'>Home</a></Link>
-    <Link to=""  >Shop</Link>
-    <Link to="" >Carts</Link>
-    <Link to="">Lenguage</Link>
-    <Link to="" >Contact</Link>
-    
-    </>
-    const endNav = <>
-    <Link className='flex gap-2  pr-3'><BsCart2 className='font-bold text-lg' /><span>My Cart (0)</span></Link>
-    <Link className='bg-[#033B4C] text-white py-1 px-4 font-semibold uppercase' to="/login" >Join Us</Link>
-    </>
-    return (
-        <div>
-            <div className='shadowBottom bg-white'>
-                <div className="navbar flex justify-between w-[95%] m-auto h-[70px]">
-                    <div className='navbar-start'>
-                        <img src={lightlogo} className='w-64' alt="" />
-                    </div>
+    const { user, signOutUser } = useAuth()
 
-                    <div className="navbar-center hidden lg:flex ">
-                        <ul className="menu menu-horizontal px-1 gap-6 text-[14px]">
-                            {links}
+    const handleSignOut = () => {
+        signOutUser()
+            .then(res => {
+                console.log(res);
+
+            })
+            .catch(err => {
+                console.log(err);
+
+            })
+
+    }
+
+    const links = <>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="">Shop</NavLink>
+        <NavLink to="">Languages</NavLink>
+
+    </>
+    const profile = <>
+
+        {
+            user ? <>
+                <div className="drawer drawer-end">
+
+                    <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content ">
+                        {/* Page content here */}
+                        <label htmlFor="my-drawer-4" className="drawer-button ">
+                            <img src={user?.photoURL} alt="Profile" className="border w-10 h-10 rounded-full" /></label>
+                    </div>
+                    <div className="drawer-side z-50">
+                        <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+                        <ul className={`bg-base-200  mt-[63px]   lg:w-[30%] md:w-[30%] w-[50%]  p-4 `}>
+                            <li className="flex justify-center items-center"><img src={user?.photoURL} alt="profile image" className="w-24 h-24  rounded-full object-cover p-1 border-2 border-[#033B4C]" /></li>
+                            <li className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3 mt-8 "><Link>Update Profile</Link></li>
+
+                            <li className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3  "><Link>Dashboard</Link></li>
+
+                            <li className="py-2  hover:bg-[#033b4c42] pl-3 " onClick={handleSignOut}>Log Out</li>
                         </ul>
-
-                    </div>
-                    <div className="navbar-end hidden lg:flex">
-                        {/* <a href={cvpdf} target='_black'><button className="hover:bg-indigo-500 border border-indigo-600 shadow-lg shadow-indigo-500/40 py-2 rounded-lg px-4 ">Download CV</button></a> */}
-                        {endNav}
-                    </div>
-
-                    <div className="navbar-end drawer drawer-end lg:hidden">
-                        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-                        <div className="drawer-content">
-                            {/* Page content here */}
-                            <label htmlFor="my-drawer-4" className="drawer-button "><div tabIndex={0} role="button" className="  btn btn-ghost lg:hidden" htmlFor="my-drawer-4">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M4 6h16M4 12h8m-8 6h16" />
-                                </svg>
-                            </div></label>
-                        </div>
-                        <div className="drawer-side">
-                            <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay bg-white"></label>
-                            <ul className="menu bg-white mt-[70px] text-base-content  md:w-80 w-52 p-4 space-y-3" style={{
-                                background: 'white',
-                                backdropFilter: 'blur( 4.5px )',
-                                webkitBackdropFilter: 'blur( 4.5px )',
-                                borderRadius: '5px',
-                            }}>
-                                {/* Sidebar content here */}
-                                {links}
-                                {endNav}
-                            </ul>
-                        </div>
                     </div>
                 </div>
+
+
+            </>
+                :
+                <NavLink to="/login" className={`bg-[#033B4C] py-2 px-4 text-white uppercase`}>Join us</NavLink>
+        }
+
+    </>
+    return (
+        <div className={`border`}>
+            <div className={`navbar bg-base-100 w-[95%] m-auto flex justify-between`}>
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className={`menu space-y-3 menu-sm dropdown-content rounded-box z-50 mt-3 w-52 p-2 shadow-lg `}>
+                            {links}
+                        </ul>
+                    </div>
+
+                    <img src={logo} className="h-16" alt="" />
+
+                </div>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1 space-x-4">
+                        {links}
+                    </ul>
+                </div>
+                <div className="">
+                    <div className="flex justify-between items-center ">
+                        <Link className='flex gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart (0)</span></Link>
+                        {profile}
+
+                    </div>
+
+
+                </div>
+
+                {/* dark mode */}
+
             </div>
         </div>
     );

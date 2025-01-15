@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../../componants/Navbar/Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
 import '../../index.css'
