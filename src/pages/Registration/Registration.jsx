@@ -37,20 +37,20 @@ const Registration = () => {
                 updateProfileData(updateDatas)
                     .then(response => {
                         console.log(response);
-                        const userData = {
-                            userName: data?.name,
-                            email: data?.email,
-                            photo: res.data.data.display_url,
-                            role: data?.category
-                        }
-                        axiosPublic.post('/users', userData)
-                            .then(res => {
-                                console.log(res.data);
-                                if (res.data.insertedId) {
-                                    // toast.success('Successfully Register & save to database')
-                                }
+                        // const userData = {
+                        //     userName: data?.name,
+                        //     email: data?.email,
+                        //     photo: res.data.data.display_url,
+                        //     role: data?.category
+                        // }
+                        // axiosPublic.post('/users', userData)
+                        //     .then(res => {
+                        //         console.log(res.data);
+                        //         if (res.data.insertedId) {
+                        //             // toast.success('Successfully Register & save to database')
+                        //         }
 
-                            })
+                        //     })
                         navigate('/')
 
                     })

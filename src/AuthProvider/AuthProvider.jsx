@@ -1,7 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.init";
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import axios from "axios";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -48,15 +49,25 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+        const unSubscribe = onAuthStateChanged(auth, async currentUser => {
             setLoading(false)
             setUser(currentUser)
+            console.log(import.meta.env.VITE_API_URL);
+            
             if (currentUser) {
+                // save data user
+                await axios.post(`http://localhost:3000/users/${currentUser?.email}`,{
+                    name: currentUser?.displayName,
+                    image: currentUser?.photoURL,
+                    email: currentUser?.email
+                    
+                })
+                
+
                 // get token and store client
                 const userInfo = { email: currentUser.email };
                 axiosPublic.post('/jwt', userInfo)
                     .then(res => {
-                        // console.log(res.data.token)
                         if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token);
                         }

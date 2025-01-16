@@ -16,19 +16,19 @@ const SocialLogin = () => {
             console.log(res);
 
 
-            const userData = {
-                userName : res.user?.displayName,
-                email: res.user?.email,
-                photo: res.user?.photoURL,
-                role: "user"
-            }
-            axiosPublic.post('/users', userData)
-            .then(res=>{
-                console.log(res.data);
-            navigate('/')
+            // const userData = {
+            //     userName : res.user?.displayName,
+            //     email: res.user?.email,
+            //     photo: res.user?.photoURL,
+            //     role: "user"
+            // }
+            // axiosPublic.post('/users', userData)
+            // .then(res=>{
+            //     console.log(res.data);
+            // navigate('/')
 
                 
-            })
+            // })
             
         })
         .catch(err=>{
@@ -41,17 +41,17 @@ const SocialLogin = () => {
         githubLogin()
         .then(res=>{
             console.log(res);
-            const userData = {
-                userName : res.user?.displayName,
-                email: res.user?.email,
-                photo: res.user?.photoURL,
-                role: "user"
-            }
-            axiosPublic.post('/users', userData)
-            .then(res=>{
-                console.log(res.data);
-            navigate('/')
-            })
+            // const userData = {
+            //     userName : res.user?.displayName,
+            //     email: res.user?.email,
+            //     photo: res.user?.photoURL,
+            //     role: "user"
+            // }
+            // axiosPublic.post('/users', userData)
+            // .then(res=>{
+            //     console.log(res.data);
+            // navigate('/')
+            // })
             
         })
         .catch(err=>{

@@ -46,7 +46,7 @@ const Navbar = () => {
                             <li className="flex justify-center items-center"><img src={user?.photoURL} alt="profile image" className="w-24 h-24  rounded-full object-cover p-1 border-2 border-[#033B4C]" /></li>
                             <li className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3 mt-8 "><Link>Update Profile</Link></li>
 
-                            <li className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3  "><Link>Dashboard</Link></li>
+                            <li className="  "><Link to="/dashboard" className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3">Dashboard</Link></li>
 
                             <li className="py-2  hover:bg-[#033b4c42] pl-3 " onClick={handleSignOut}>Log Out</li>
                         </ul>

@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "category": "Tablets",
+      "image": "https://i.ibb.co.com/9YZJXVm/tablet.jpg",
+      "description": "Browse a wide range of tablets for various medical needs."
+    },
+    {
+      "id": 2,
+      "category": "Capsules",
+      "image": "https://i.ibb.co.com/QCns1rN/capsul.jpg",
+      "description": "Find high-quality capsules for effective treatment."
+    },
+    {
+      "id": 3,
+      "category": "Syrups",
+      "image": "https://i.ibb.co.com/hFSDvb2/syrup.jpg",
+      "description": "Explore syrups for various health conditions."
+    },
+    {
+      "id": 4,
+      "category": "Powders",
+      "image": "https://i.ibb.co.com/1s25JXN/powder.png",
+      "description": "Choose from a variety of medicinal powders."
+    },
+    {
+      "id": 5,
+      "category": "Injections",
+      "image": "https://i.ibb.co.com/PzSRNwV/injections.jpg",
+      "description": "High-quality injections for precise and fast treatment."
+    },
+    {
+      "id": 6,
+      "category": "Creams & Ointments",
+      "image": "https://i.ibb.co.com/TWcd0tT/cream.webp",
+      "description": "Effective creams and ointments for topical application."
+    },
+    {
+      "id": 7,
+      "category": "Drops",
+      "image": "https://i.ibb.co.com/RQmZZGN/drops.webp",
+      "description": "Wide range of medicinal drops for quick relief."
+    },
+    {
+      "id": 8,
+      "category": "Suspensions",
+      "image": "https://i.ibb.co.com/sqcsB04/suspension.png",
+      "description": "Reliable suspensions for various medical needs."
+    }
+  ]
+ 
