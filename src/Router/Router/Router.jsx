@@ -12,6 +12,7 @@ import Carts from "../../pages/Carts/Carts";
 import Checkout from "../../pages/Checkout/Checkout";
 import Invoice from "../../pages/Invoice/Invoice";
 import ManageUser from "../../pages/Dashboard/Admin/ManageUser/ManageUser";
+import ManageCategory from "../../pages/Dashboard/Admin/ManageCategory/ManageCategory";
 
 export  const router = createBrowserRouter([
     {
@@ -64,7 +65,11 @@ export  const router = createBrowserRouter([
         {
           path: "/dashboard/manageUsers",
           element: <ManageUser></ManageUser>
-        }
+        },
+        {
+          path: "/dashboard/manageCategory",
+          element: <ManageCategory></ManageCategory>
+        },
       ]
     }
 

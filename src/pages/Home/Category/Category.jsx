@@ -1,17 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard";
+import useCategory from "../../../Hooks/useCategory";
 
 
 const Category = () => {
-    const [category, setCategory] = useState([])
-    useEffect(()=>{
-        axios.get('/categoryCard.json')
-    .then(res=>{
-        setCategory(res.data);
-        
-    })
-    },[])
+    // const [category, setCategory] = useState([])
+    
+    const [category] = useCategory()
     // console.log(category);
     
     return (

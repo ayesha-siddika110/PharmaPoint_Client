@@ -6,18 +6,6 @@ const CategoryCard = ({item}) => {
 
     const {image, description, category} = item || {}
 
-    const [product, setProduct] = useState([])
-    // useEffect(()=>{
-    //     axios.get('http://localhost:3000/products')
-    // .then(res=>{
-    //     setProduct(res.data)
-    // })
-    // }, [])
-    
-    // const productCategory = product?.filter(item=> item?.category === category)
-    // console.log(productCategory);
-    
-
 
     return (
         <Link to={`/category/${category}`} className='border p-4'>

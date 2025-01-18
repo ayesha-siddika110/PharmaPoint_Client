@@ -1,12 +1,12 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
-import LightButton from "../../Share/LightButton/LightButton";
+// import LightButton from "../../Share/LightButton/LightButton";
 import { FaRegEye } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
-import { useMutation, useQuery } from "@tanstack/react-query";
+// import { useMutation, useQuery } from "@tanstack/react-query";
 
 
 const CategoryDatas = () => {
@@ -27,13 +27,13 @@ const CategoryDatas = () => {
 
 
     // purchase quantity
-    const [purchaseQuantity, setPurchaseQuantity] = useState(1);
+    // const [purchaseQuantity, setPurchaseQuantity] = useState(1);
 
-    const handlepurchaseQuantity = (event) => {
-      const value = event.target.value; // Get the current input value
-      setPurchaseQuantity(value); // Update the state with the input value
-    //   console.log("Purchase Quantity:", value); // Log the current value
-    };
+    // const handlepurchaseQuantity = (event) => {
+    //   const value = event.target.value; // Get the current input value
+    //   setPurchaseQuantity(value); // Update the state with the input value
+    // //   console.log("Purchase Quantity:", value); // Log the current value
+    // };
 
     // add to cart 
 

@@ -1,5 +1,5 @@
 
-import useAdmin from '../../Hooks/useAdmin';
+// import useAdmin from '../../Hooks/useAdmin';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import logo from '../../assets/Logo/darklogo.png'
 import LiElement from './LiElement';
@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import './styleD.css'
 
 const Dashboard = () => {
-    const [isAdmin, isAdminLoading] = useAdmin()
+    // const [isAdmin, isAdminLoading] = useAdmin()
 
     return (
         <div className='flex'>
@@ -28,7 +28,7 @@ const Dashboard = () => {
 
                                 <NavLink to="/dashboard/manageUsers"><LiElement name={"Manage Users"}></LiElement></NavLink>
 
-                                <Link><LiElement name={"Manage Category"}></LiElement></Link>
+                                <NavLink to="/dashboard/manageCategory"><LiElement name={"Manage Category"}></LiElement></NavLink>
 
                                 <Link><LiElement name={"Payment"}></LiElement></Link>
 
