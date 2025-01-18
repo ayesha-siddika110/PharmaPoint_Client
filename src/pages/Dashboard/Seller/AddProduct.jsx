@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DashboardHeading from '../../../Share/dashboardHeading/DashboardHeading';
-import { useNavigate } from 'react-router-dom';
+
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
@@ -8,7 +8,6 @@ import { ImSpinner9 } from 'react-icons/im';
 import { toast } from 'react-toastify';
 
 const AddProduct = () => {
-    const navigate = useNavigate()
 
     const image_hosting_key = import.meta.env.VITE_ImageBB_apiKey;
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;

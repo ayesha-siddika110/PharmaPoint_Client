@@ -1,10 +1,11 @@
 
 import useAdmin from '../../Hooks/useAdmin';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import logo from '../../assets/Logo/darklogo.png'
 import LiElement from './LiElement';
 import { Toaster } from 'react-hot-toast';
 import { ToastContainer } from 'react-toastify';
+import './styleD.css'
 
 const Dashboard = () => {
     const [isAdmin, isAdminLoading] = useAdmin()
@@ -20,12 +21,12 @@ const Dashboard = () => {
                 </div>
 
                 <div>
-                    <ul className='text-white  pl-6 mt-8'>
-                        {
-                            isAdmin && <>
+                    <ul className='text-white  pl-6 mt-8 flex flex-col'>
+                        <p className='text-red-600'>admin route</p>
+                        
                                 <Link><LiElement name={"Admin Home"}></LiElement></Link>
 
-                                <Link><LiElement name={"Manage Users"}></LiElement></Link>
+                                <NavLink to="/dashboard/manageUsers"><LiElement name={"Manage Users"}></LiElement></NavLink>
 
                                 <Link><LiElement name={"Manage Category"}></LiElement></Link>
 
@@ -34,10 +35,10 @@ const Dashboard = () => {
                                 <Link><LiElement name={"Sales Report"}></LiElement></Link>
 
                                 <Link><LiElement name={"Banner Advertise"}></LiElement></Link>
-                            </>
-                        }
+                          
+                        <p className='text-red-600'>seller route</p>
                                 <Link to="/dashboard/addProduct"><LiElement name={"Add Product"}></LiElement></Link>
-
+                        <p className='text-red-600'>user route</p>
                     </ul>
                 </div>
 

@@ -3,6 +3,7 @@ import { Link, NavLink, } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import logo from '../../assets/Logo/Lightlogo.png'
 import { BsCart2 } from "react-icons/bs";
+import useCart from "../../Hooks/useCart";
 
 
 
@@ -21,6 +22,9 @@ const Navbar = () => {
             })
 
     }
+  
+    const [cart] = useCart()
+    
 
     const links = <>
         <NavLink to="/">Home</NavLink>
@@ -96,7 +100,7 @@ const Navbar = () => {
                 </div>
                 <div className="">
                     <div className="flex justify-between items-center ">
-                        <Link className='flex gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart (0)</span></Link>
+                        <Link to="/carts" className='flex gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart ({cart.length})</span></Link>
                         {profile}
 
                     </div>

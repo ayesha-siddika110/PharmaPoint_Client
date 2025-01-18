@@ -12,7 +12,7 @@ const Category = () => {
         
     })
     },[])
-    console.log(category);
+    // console.log(category);
     
     return (
         <div>
