@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
 import useCategory from "../../../../Hooks/useCategory";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import { useEffect } from "react";
+import {  useState } from "react";
 import { useForm } from "react-hook-form";
-import { all } from "axios";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
@@ -50,8 +48,38 @@ const ManageCategory = () => {
 
     }
 
-    const handleUpdate = (user) => {
-        console.log(user);
+
+    
+
+    // category update
+    const [categoryUpdate, setCategoryUpdate] = useState()
+    console.log(categoryUpdate);
+    
+    const handleUpdate = (e) => {
+        e.preventDefault()
+        const updateData = {
+            category: e.target.category.value,
+            image: e.target.image.value,
+            description: e.target.description.value
+        }
+
+        axiosSecure.patch(`/category/${categoryUpdate?._id}`, updateData)
+        .then(res => {
+            if(res.data.modifiedCount>0){
+
+                document.getElementById("my_modal_update").close();
+                // console.log(res.data);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Category Updated Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            
+        })
+
+
     }
     return (
         <div className="w-[80%] m-auto">
@@ -88,7 +116,9 @@ const ManageCategory = () => {
                                     <td>
 
 
-                                        <p className="bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer w-24 m-auto" onClick={() => handleUpdate(user)} >Update</p>
+                                        <p className="bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer w-24 m-auto" onClick={() => {setCategoryUpdate(user),
+                                            document.getElementById('my_modal_update').showModal()}}
+                                             >Update</p>
                                     </td>
                                     <td>
                                         <p className="bg-red-300  text-red-800 text-center rounded-full py-1 cursor-pointer  w-24 m-auto" >delete</p>
@@ -134,6 +164,41 @@ const ManageCategory = () => {
                     </form>
                 </div>
             </dialog>
+
+            {/* update data */}
+            <dialog id="my_modal_update" className="modal">
+                <div className="modal-box w-11/12">
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <form onSubmit={handleUpdate} className=' bg-white bg-opacity-30  w-[100%] lg:p-10 p-5 space-y-5'>
+                        <p className='text-4xl text-center font-semibold'>Update Category {categoryUpdate?.category}</p>
+                        <div className='form-control'>
+                            <p className=''>Category Name : *</p>
+
+                            <input type="text" name="category" defaultValue={categoryUpdate?.category} placeholder="Type here" className=" py-3 px-4 input-bordered w-full border border-[#033B4C] rounded-lg" required />
+                        </div>
+                        
+                        <div className='form-control'>
+                            <label htmlFor="" className="text-black   pb-2" >Image *</label>
+                            <input
+                               
+                                className="py-3 px-4 input-bordered w-full border border-[#033B4C] rounded-lg " name="image" required  defaultValue={categoryUpdate?.image} />
+                        </div>
+                        <div className='form-control'>
+                            <p className=''>Description *</p>
+
+                            <textarea required name="description" defaultValue={categoryUpdate?.description}  type="text" placeholder="Type here" className=" py-3 px-4 input-bordered w-full border border-[#033B4C] rounded-lg" />
+                        </div>
+
+                        <div>
+                            <button className='bg-[#033B4C] w-full text-center py-3 text-white mt-3'> + Update Category</button>
+
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+           
 
         </div>
     );
