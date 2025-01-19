@@ -14,6 +14,7 @@ const SocialLogin = () => {
         GoogleLogin()
         .then(res=>{
             console.log(res);
+            navigate('/')
 
 
             // const userData = {
@@ -41,6 +42,7 @@ const SocialLogin = () => {
         githubLogin()
         .then(res=>{
             console.log(res);
+            navigate('/')
             // const userData = {
             //     userName : res.user?.displayName,
             //     email: res.user?.email,
