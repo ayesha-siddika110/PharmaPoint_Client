@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 import useCategory from "../../../../Hooks/useCategory";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import {  useState } from "react";
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
 // TODO : update delete category
@@ -10,18 +10,17 @@ import Swal from "sweetalert2";
 
 const ManageCategory = () => {
     const [category, refetch] = useCategory()
-    console.log(category);
+    // console.log(category);
 
     const image_hosting_key = import.meta.env.VITE_ImageBB_apiKey;
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-    const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const onSubmit = async (data) => {
         console.log(data);
         const imageFile = { image: data.image[0] }
-        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+        const res = await axiosSecure.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
@@ -68,7 +67,7 @@ const ManageCategory = () => {
             if(res.data.modifiedCount>0){
 
                 document.getElementById("my_modal_update").close();
-                // console.log(res.data);
+                refetch()
                 Swal.fire({
                     icon: 'success',
                     title: 'Category Updated Successfully',
@@ -80,6 +79,33 @@ const ManageCategory = () => {
         })
 
 
+    }
+
+    // delete category
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this category!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/category/${id}`)
+                .then(res=>{
+                    if(res.data.deletedCount>0){
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                          )
+                          refetch()
+                    }
+                })
+            }
+          })
     }
     return (
         <div className="w-[80%] m-auto">
@@ -103,25 +129,25 @@ const ManageCategory = () => {
                     </thead>
                     <tbody>
                         {
-                            category.map((user, index) => (
+                            category.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
 
                                     <td>
-                                        <img src={user?.image} alt="" className="w-14 h-12 object-cover " />
+                                        <img src={item?.image} alt="" className="w-14 h-12 object-cover " />
                                     </td>
                                     <td>
-                                        <p>{user?.category}</p>
+                                        <p>{item?.category}</p>
                                     </td>
                                     <td>
 
 
-                                        <p className="bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer w-24 m-auto" onClick={() => {setCategoryUpdate(user),
+                                        <p className="bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer w-24 m-auto" onClick={() => {setCategoryUpdate(item),
                                             document.getElementById('my_modal_update').showModal()}}
                                              >Update</p>
                                     </td>
                                     <td>
-                                        <p className="bg-red-300  text-red-800 text-center rounded-full py-1 cursor-pointer  w-24 m-auto" >delete</p>
+                                        <p className="bg-red-300  text-red-800 text-center rounded-full py-1 cursor-pointer  w-24 m-auto" onClick={()=>handleDelete(item?._id)} >delete</p>
                                     </td>
                                 </tr>
                             ))

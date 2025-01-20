@@ -30,7 +30,7 @@ const Dashboard = () => {
 
                                 <NavLink to="/dashboard/manageCategory"><LiElement name={"Manage Category"}></LiElement></NavLink>
 
-                                <Link><LiElement name={"Payment"}></LiElement></Link>
+                                <NavLink to="/dashboard/payment"><LiElement name={"Payment"}></LiElement></NavLink>
 
                                 <Link><LiElement name={"Sales Report"}></LiElement></Link>
 

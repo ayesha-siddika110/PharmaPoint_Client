@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -22,7 +23,7 @@ const ManageUser = () => {
             toast.success("User role updated");
         } catch (error) {
             toast.error("Failed to update user role");
-            console.error(error);
+            // console.error(error);
         }
     };
 
