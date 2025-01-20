@@ -32,9 +32,9 @@ const Dashboard = () => {
 
                                 <NavLink to="/dashboard/payment"><LiElement name={"Payment"}></LiElement></NavLink>
 
-                                <Link><LiElement name={"Sales Report"}></LiElement></Link>
+                                <NavLink to="/dashboard/salesReport"><LiElement name={"Sales Report"}></LiElement></NavLink>
 
-                                <Link><LiElement name={"Banner Advertise"}></LiElement></Link>
+                                <NavLink to="/dashboard/bannerAdvertise"><LiElement name={"Banner Advertise"}></LiElement></NavLink>
                           
                         <p className='text-red-600'>seller route</p>
                                 <Link to="/dashboard/addProduct"><LiElement name={"Add Product"}></LiElement></Link>

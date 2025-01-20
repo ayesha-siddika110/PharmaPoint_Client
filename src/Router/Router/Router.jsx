@@ -14,6 +14,8 @@ import Invoice from "../../pages/Invoice/Invoice";
 import ManageUser from "../../pages/Dashboard/Admin/ManageUser/ManageUser";
 import ManageCategory from "../../pages/Dashboard/Admin/ManageCategory/ManageCategory";
 import Payment from "../../pages/Dashboard/Admin/Payment/Payment";
+import SalesReport from "../../pages/Dashboard/Admin/SalesReport/SalesReport";
+import BannerAdvertise from "../../pages/Dashboard/Admin/BannerAdvertise/BannerAdvertise";
 
 export  const router = createBrowserRouter([
     {
@@ -74,6 +76,14 @@ export  const router = createBrowserRouter([
         {
           path: "/dashboard/payment",
           element: <Payment></Payment>
+        },
+        {
+          path: "/dashboard/salesReport",
+          element: <SalesReport></SalesReport>
+        },
+        {
+          path: "/dashboard/bannerAdvertise",
+          element: <BannerAdvertise></BannerAdvertise>
         },
       ]
     }
