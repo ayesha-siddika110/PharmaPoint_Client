@@ -7,7 +7,7 @@ import useAuth from '../../../Hooks/useAuth';
 import { ImSpinner9 } from 'react-icons/im';
 import { toast } from 'react-toastify';
 
-const AddProduct = () => {
+const AddProduct = ({refetch}) => {
 
     const image_hosting_key = import.meta.env.VITE_ImageBB_apiKey;
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -43,6 +43,7 @@ const AddProduct = () => {
             // console.log(resData.data);
             if(resData.data.insertedId){
                 toast.success("successfully Add The product")
+                refetch()
             }
             reset()
             
@@ -54,12 +55,12 @@ const AddProduct = () => {
     console.log(loading);
     
     return (
-        <div className='border'>
+        <div className=''>
 
 
             <div
 
-                className='border'
+                className=''
 
             >
 
