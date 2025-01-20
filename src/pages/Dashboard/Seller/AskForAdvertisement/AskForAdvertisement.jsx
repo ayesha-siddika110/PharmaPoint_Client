@@ -117,7 +117,7 @@ const AskForAdvertisement = () => {
 
             <div className="flex justify-end items-center mt-10 mb-8">
                 <div>
-                    <button onClick={() => document.getElementById('my_modal_3').showModal()} className="bg-[#033B4C] text-white py-3 px-4">{loading? <ImSpinner9 className='text-center text-[#033B4C] te w-full animate-spin' /> : "+ Add Advertisement"}</button>
+                    <button onClick={() => document.getElementById('my_modal_3').showModal()} className="bg-[#033B4C] text-white py-3 px-4">+ Add Advertisement</button>
                 </div>
             </div>
             <table className="table table-zebra ">

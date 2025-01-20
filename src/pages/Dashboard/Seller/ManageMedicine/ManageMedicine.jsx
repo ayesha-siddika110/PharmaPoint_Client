@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import AddProduct from "../addProduct";
+import Swal from "sweetalert2";
 
 
 const ManageMedicine = () => {
@@ -16,11 +17,40 @@ const ManageMedicine = () => {
     })
     console.log(products);
 
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/products/${id}`)
+                    .then(res => {
+                        refetch()
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Product Deleted Successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+
+                        })
+
+
+
+                    })
+            }
+        })
+    }
+
     return (
         <div>
             <div className="w-[80%] m-auto">
                 <div className="overflow-x-auto">
-                    <h1 className="text-2xl font-bold text-center mt-20 mb-14">Manage Payments</h1>
+                    <h1 className="text-2xl font-bold text-center mt-20 mb-14">Manage Medicine</h1>
                     <div className="flex justify-end items-center mt-10 mb-8">
                         <div>
                             <button onClick={() => document.getElementById('my_modal_3').showModal()} className="bg-[#033B4C] text-white py-3 px-4">+ Add Medicine</button>
