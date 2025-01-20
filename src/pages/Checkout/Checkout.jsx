@@ -88,13 +88,14 @@ const CheckoutForm = () => {
 
                 //save in the database
                 const payment = {
-                    email: user.email,
+                    buyerEmail: user.email,
                     price: totalPrice, //TODO: convert to item price
                     transactionId: paymentIntent.id,
                     date: new Date(),  
                     cartIds: cart.map(item => item._id),
                     productItemIds: cart.map(item => item.productId),
-                    status: 'pending'
+                    status: 'pending',
+                    sellerEmail: cart?.map(item => item.sellerEmail)
                 }
 
                 const res = await axiosSecure.post('/payments', payment);

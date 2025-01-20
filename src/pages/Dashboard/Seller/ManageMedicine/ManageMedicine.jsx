@@ -40,7 +40,7 @@ const ManageMedicine = () => {
                         </thead>
                         <tbody>
                             {
-                                products.map((item, index) => (
+                                products?.map((item, index) => (
                                     <tr key={index} className="text-center h-20">
                                         <td>{index + 1}</td>
 
