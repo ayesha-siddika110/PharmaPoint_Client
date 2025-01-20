@@ -16,6 +16,10 @@ import ManageCategory from "../../pages/Dashboard/Admin/ManageCategory/ManageCat
 import Payment from "../../pages/Dashboard/Admin/Payment/Payment";
 import SalesReport from "../../pages/Dashboard/Admin/SalesReport/SalesReport";
 import BannerAdvertise from "../../pages/Dashboard/Admin/BannerAdvertise/BannerAdvertise";
+import SellerHome from "../../pages/Dashboard/Seller/SellerHome/SellerHome";
+import ManageMedicine from "../../pages/Dashboard/Seller/ManageMedicine/ManageMedicine";
+import PaymentHistory from "../../pages/Dashboard/Seller/PaymentHistory/PaymentHistory";
+import AskForAdvertisement from "../../pages/Dashboard/Seller/AskForAdvertisement/AskForAdvertisement";
 
 export  const router = createBrowserRouter([
     {
@@ -61,10 +65,8 @@ export  const router = createBrowserRouter([
       path: "/dashboard",
       element: <Dashboard></Dashboard>,
       children: [
-        {
-          path: "/dashboard/addProduct",
-          element: <AddProduct></AddProduct>
-        },
+       
+        // admin route
         {
           path: "/dashboard/manageUsers",
           element: <ManageUser></ManageUser>
@@ -85,6 +87,28 @@ export  const router = createBrowserRouter([
           path: "/dashboard/bannerAdvertise",
           element: <BannerAdvertise></BannerAdvertise>
         },
+        // seller route
+        {
+          path: "/dashboard/addProduct",
+          element: <AddProduct></AddProduct>
+        },
+        {
+          path: "/dashboard/sellerHome",
+          element: <SellerHome></SellerHome>
+        },
+        {
+          path: "/dashboard/manageMedicine",
+          element: <ManageMedicine></ManageMedicine>
+        },
+        {
+          path: "/dashboard/paymentHistory",
+          element: <PaymentHistory></PaymentHistory>
+        },
+        {
+          path: "/dashboard/askForAdvertisement",
+          element: <AskForAdvertisement></AskForAdvertisement>
+        },
+
       ]
     }
 

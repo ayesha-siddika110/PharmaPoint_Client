@@ -14,7 +14,7 @@ const Dashboard = () => {
         <div className='flex'>
             <ToastContainer />
             <Toaster/>
-            <div className='w-[20%] bg-[#033B4C] fixed left-0 h-[100vh]'>
+            <div className='w-[20%] bg-[#033B4C] fixed left-0 h-[100vh] overflow-y-scroll overflow-x-hidden'>
                 {/* logo */}
                 <div>
                     <img src={logo} className='w-full object-contain pt-6' alt="" />
@@ -37,7 +37,11 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/bannerAdvertise"><LiElement name={"Banner Advertise"}></LiElement></NavLink>
                           
                         <p className='text-red-600'>seller route</p>
-                                <Link to="/dashboard/addProduct"><LiElement name={"Add Product"}></LiElement></Link>
+                                <NavLink to="/dashboard/sellerHome"><LiElement name={"Seller Home"}></LiElement></NavLink>
+                                <NavLink to="/dashboard/addProduct"><LiElement name={"Add Product"}></LiElement></NavLink>
+                                <NavLink to="/dashboard/manageMedicine"><LiElement name={"Manage Medicine"}></LiElement></NavLink>
+                                <NavLink to="/dashboard/paymentHistory"><LiElement name={"Payment History"}></LiElement></NavLink>
+                                <NavLink to="/dashboard/askForAdvertisement"><LiElement name={"Ask For Advertisement"}></LiElement></NavLink>
                         <p className='text-red-600'>user route</p>
                     </ul>
                 </div>

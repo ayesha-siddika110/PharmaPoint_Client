@@ -89,7 +89,7 @@ const Payment = () => {
                                             >{item?.status}</p>
                                         </td>
                                         <td>
-                                            <button disabled={item?.status === 'paid'} className={`bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer  w-32 m-auto ${item?.status === 'paid' ? 'bg-gray-400 text-gray-500': ''}`} onClick={() => handleAcceptPayment(item?._id)}  >accept payment</button>
+                                            <button disabled={item?.status === 'paid'} className={` text-center rounded-full py-1 cursor-pointer  w-32 m-auto ${item?.status == 'paid' ? 'bg-gray-400 text-gray-500': 'bg-green-300  text-green-800'}`} onClick={() => handleAcceptPayment(item?._id)}  >accept payment</button>
                                         </td>
                                     </tr>
                                 ))
