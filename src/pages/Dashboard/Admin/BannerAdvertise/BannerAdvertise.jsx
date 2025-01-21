@@ -4,9 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 import LoadingSign from '../../../../Share/LoadingSign/LoadingSign';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import useRole from '../../../../Hooks/useRole';
 
 const BannerAdvertise = () => {
     const axiosSecure = useAxiosSecure()
+    const [role] = useRole()
     const { data: advertise = [], refetch, isLoading } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
@@ -23,8 +25,6 @@ const BannerAdvertise = () => {
     
         
         const handleUpdate = (id) => {
-
-    
            Swal.fire({
                        title: "Are you sure?",
                        text: "You won't be able to revert this!",
@@ -35,17 +35,34 @@ const BannerAdvertise = () => {
                        confirmButtonText: "Yes, accept!"
                    }).then((result) => {
                        if (result.isConfirmed) {
-                           axiosSecure.patch(`/advertise/${id}`, { status: 'active' })
+                        if(advertise.find(item=>item.status==='active')){
+                            axiosSecure.patch(`/advertise/${id}`, { status: 'pending' })
                            .then(res => {
                                
                            
                                Swal.fire({
-                                   title: "payment accepted",
-                                   text: "This payment has been accepted",
+                                   title: "removed from slide",
+                                   text: "This advertise has been removed from slide",
                                    icon: "success"
                                });
                                refetch()
                            })
+                            return}
+                            else{
+                                axiosSecure.patch(`/advertise/${id}`, { status: 'active' })
+                           .then(res => {
+                               
+                           
+                               Swal.fire({
+                                   title: "Advertise active",
+                                   text: "This advertise has been activated",
+                                   icon: "success"
+                               });
+                               refetch()
+                           })
+
+                            }
+                           
                            
                        }
                    });
@@ -93,7 +110,7 @@ const BannerAdvertise = () => {
                         <th>Title</th>
                         <th>details</th>
                         <th>Status</th>
-                        <th>Update</th>
+                        <th className='w-[20%]'>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -113,11 +130,11 @@ const BannerAdvertise = () => {
                                     <p>{item?.description}</p>
                                 </td>
                                 <td>
-                                    <p>{item?.status}</p>
+                                    <p className={`${item?.status === 'active'? 'text-green-600' : 'text-red-600' } font-semibold`}>{item?.status}</p>
                                 </td>
                                 <td>
-                                            <p className="bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer w-24 m-auto" onClick={() => handleUpdate(item?._id)} 
-                                    >Add To Slide</p>
+                                            <p className={` text-center rounded-full py-1 cursor-pointer m-auto ${item?.status === 'active'? 'bg-red-300 text-red-600' : 'bg-green-300  text-green-800' }`} onClick={() => handleUpdate(item?._id)} 
+                                    >{item?.status === 'active' ? 'remove from Silde' : 'Add To Slide'}</p>
                                 </td>
                                 <td>
                                     <p className="bg-red-300  text-red-800 text-center rounded-full py-1 cursor-pointer  w-24 m-auto" onClick={() => handleDelete(item?._id)} >delete</p>

@@ -3,17 +3,17 @@ import useRole from "../../Hooks/useRole";
 import LoadingSign from "../../Share/LoadingSign/LoadingSign";
 
 
-const AdminRoute = ({children}) => {
+const SellerRoute = ({children}) => {
     const [role, isloading] = useRole()
 
     if(isloading){
         return <LoadingSign></LoadingSign>
     }
 
-    if (role === 'admin') {
+    if (role === 'seller') {
         return children;
     }
-    return <Navigate to="/" replace></Navigate>
+    return <Navigate to="/"  replace></Navigate>
 };
 
-export default AdminRoute;
+export default SellerRoute;

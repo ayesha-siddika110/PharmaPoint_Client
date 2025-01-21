@@ -94,9 +94,10 @@ const SalesReport = () => {
                                         payments.map((item, index) => (
                                             <tr key={index}>
                                                 <td>{index + 1}</td>
+                                                <td>ousodh er name</td>
 
                                                 <td>
-                                                    <p>{item?.email}</p>
+                                                    <p>{item?.sellerEmail}</p>
                                                 </td>
                                                 <td>
                                                     <p>{item?.price / 100}</p>

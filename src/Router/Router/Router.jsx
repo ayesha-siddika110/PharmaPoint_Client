@@ -20,6 +20,11 @@ import SellerHome from "../../pages/Dashboard/Seller/SellerHome/SellerHome";
 import ManageMedicine from "../../pages/Dashboard/Seller/ManageMedicine/ManageMedicine";
 import PaymentHistory from "../../pages/Dashboard/Seller/PaymentHistory/PaymentHistory";
 import AskForAdvertisement from "../../pages/Dashboard/Seller/AskForAdvertisement/AskForAdvertisement";
+import UserPaymentHistory from "../../pages/Dashboard/User/UserPaymentHistory/UserPaymentHistory";
+import PrivetRouter from "../PrivetRoute/PrivetRoute";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
+import UserRoute from "../UserRoute/UserRoute";
 
 export  const router = createBrowserRouter([
     {
@@ -69,44 +74,49 @@ export  const router = createBrowserRouter([
         // admin route
         {
           path: "/dashboard/manageUsers",
-          element: <ManageUser></ManageUser>
+          element: <PrivetRouter><AdminRoute><ManageUser></ManageUser></AdminRoute></PrivetRouter>
         },
         {
           path: "/dashboard/manageCategory",
-          element: <ManageCategory></ManageCategory>
+          element: <PrivetRouter><AdminRoute><ManageCategory></ManageCategory></AdminRoute></PrivetRouter>
         },
         {
           path: "/dashboard/payment",
-          element: <Payment></Payment>
+          element: <PrivetRouter><AdminRoute><Payment></Payment></AdminRoute></PrivetRouter>
         },
         {
           path: "/dashboard/salesReport",
-          element: <SalesReport></SalesReport>
+          element: <PrivetRouter><AdminRoute><SalesReport></SalesReport></AdminRoute></PrivetRouter>
         },
         {
           path: "/dashboard/bannerAdvertise",
-          element: <BannerAdvertise></BannerAdvertise>
+          element: <PrivetRouter><AdminRoute><BannerAdvertise></BannerAdvertise></AdminRoute></PrivetRouter>
         },
         // seller route
         {
           path: "/dashboard/addProduct",
-          element: <AddProduct></AddProduct>
+          element: <PrivetRouter><SellerRoute><AddProduct></AddProduct></SellerRoute></PrivetRouter>
         },
         {
           path: "/dashboard/sellerHome",
-          element: <SellerHome></SellerHome>
+          element: <PrivetRouter><SellerRoute><SellerHome></SellerHome></SellerRoute></PrivetRouter>
         },
         {
           path: "/dashboard/manageMedicine",
-          element: <ManageMedicine></ManageMedicine>
+          element: <PrivetRouter><SellerRoute><ManageMedicine></ManageMedicine></SellerRoute></PrivetRouter>
         },
         {
           path: "/dashboard/paymentHistory",
-          element: <PaymentHistory></PaymentHistory>
+          element: <PrivetRouter><SellerRoute><PaymentHistory></PaymentHistory></SellerRoute></PrivetRouter>
         },
         {
           path: "/dashboard/askForAdvertisement",
-          element: <AskForAdvertisement></AskForAdvertisement>
+          element: <PrivetRouter><SellerRoute><AskForAdvertisement></AskForAdvertisement></SellerRoute></PrivetRouter>
+        },
+        // user route
+        {
+          path: "/dashboard/userPaymentHistory",
+          element: <PrivetRouter><UserRoute><UserPaymentHistory></UserPaymentHistory></UserRoute></PrivetRouter>
         },
 
       ]

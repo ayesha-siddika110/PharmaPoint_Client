@@ -1,7 +1,7 @@
 
 import { Link, NavLink, } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import logo from '../../assets/Logo/Lightlogo.png'
+import logo from '../../assets/Logo/darklogo.png'
 import { BsCart2 } from "react-icons/bs";
 import useCart from "../../Hooks/useCart";
 
@@ -65,8 +65,8 @@ const Navbar = () => {
 
     </>
     return (
-        <div className={`border`}>
-            <div className={`navbar bg-base-100 w-[95%] m-auto flex justify-between`}>
+        <div className={``}>
+            <div className={`navbar bg-[#033B4C] text-white w-[100%] m-auto flex justify-between`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -94,7 +94,7 @@ const Navbar = () => {
 
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 space-x-4">
+                    <ul className=" flex px-1 space-x-3 ">
                         {links}
                     </ul>
                 </div>

@@ -129,7 +129,7 @@ const ManageCategory = () => {
                     </thead>
                     <tbody>
                         {
-                            category.map((item, index) => (
+                            category?.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
 

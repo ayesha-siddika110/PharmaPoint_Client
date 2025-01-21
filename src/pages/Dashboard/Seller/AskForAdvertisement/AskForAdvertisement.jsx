@@ -18,14 +18,15 @@ const AskForAdvertisement = () => {
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
         const imageFile = { image: data.image[0] }
+        setLoading(true)
         const res = await axiosSecure.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         });
-        setLoading(true)
+        
         const alldata = { ...data, image: res.data.data.display_url }
         console.log(alldata);
 
