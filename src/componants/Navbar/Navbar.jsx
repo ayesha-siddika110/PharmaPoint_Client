@@ -57,8 +57,6 @@ const Navbar = () => {
                         </ul>
                     </div>
                 </div>
-
-
             </>
                 :
                 <NavLink to="/login" className={`bg-[#033B4C] py-2 px-4 text-white uppercase`}>Join us</NavLink>
@@ -67,7 +65,7 @@ const Navbar = () => {
     </>
     return (
         <div className={`bg-[#033B4C] text-white`}>
-            <div className={`navbar  w-[95%] m-auto flex justify-between`}>
+            <div className={`navbar  w-[90%] m-auto flex justify-between`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -13,7 +13,7 @@ const Category = () => {
     return (
         <div>
 
-            <div className="w-[80%] m-auto grid grid-cols-4 gap-6">
+            <div className="w-[90%] m-auto grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 2xl:grid-cols-5 gap-6">
                 {category?.map((item,idx)=><CategoryCard key={idx} item={item}></CategoryCard>) }
             </div>
             

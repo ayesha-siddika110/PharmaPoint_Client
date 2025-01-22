@@ -53,6 +53,8 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
             setUser(currentUser)
             console.log(import.meta.env.VITE_API_URL);
+            console.log(localStorage.getItem("access-token"));
+            
             
             if (currentUser) {
                 // save data user
@@ -83,7 +85,7 @@ const AuthProvider = ({ children }) => {
             unSubscribe()
         }
 
-    }, [])
+    }, [axiosPublic])
     console.log(user);
     
 

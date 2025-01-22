@@ -54,34 +54,34 @@ const AskForAdvertisement = () => {
     const [advertiseUpdate, setCategoryUpdate] = useState()
     console.log(advertiseUpdate);
     
-    const handleUpdate = (e) => {
-        e.preventDefault()
-        const updateData = {
-            title: e.target.title.value,
-            image: e.target.image.value,
-            description: e.target.description.value
-        }
-        setLoading(true)
+    // const handleUpdate = (e) => {
+    //     e.preventDefault()
+    //     const updateData = {
+    //         title: e.target.title.value,
+    //         image: e.target.image.value,
+    //         description: e.target.description.value
+    //     }
+    //     setLoading(true)
 
-        axiosSecure.patch(`/advertise/${advertiseUpdate?._id}`, updateData)
-        .then(res => {
-            if(res.data.modifiedCount>0){
+    //     axiosSecure.patch(`/advertise/${advertiseUpdate?._id}`, updateData)
+    //     .then(res => {
+    //         if(res.data.modifiedCount>0){
 
-                document.getElementById("my_modal_update").close();
-                refetch()
-                setLoading(false)
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Category Updated Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
+    //             document.getElementById("my_modal_update").close();
+    //             refetch()
+    //             setLoading(false)
+    //             Swal.fire({
+    //                 icon: 'success',
+    //                 title: 'Category Updated Successfully',
+    //                 showConfirmButton: false,
+    //                 timer: 1500
+    //             })
+    //         }
             
-        })
+    //     })
 
 
-    }
+    // }
 
     // delete category
     const handleDelete = (id) => {
@@ -130,7 +130,6 @@ const AskForAdvertisement = () => {
                         <th>Title</th>
                         <th>details</th>
                         <th>Status</th>
-                        <th>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -152,7 +151,7 @@ const AskForAdvertisement = () => {
                                 <td>
                                     <p>{item?.status}</p>
                                 </td>
-                                <td>
+                                {/* <td>
 
 
                                     <p className="bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer w-24 m-auto" onClick={() => {
@@ -160,7 +159,7 @@ const AskForAdvertisement = () => {
                                         document.getElementById('my_modal_update').showModal()
                                     }}
                                     >Update</p>
-                                </td>
+                                </td> */}
                                 <td>
                                     <p className="bg-red-300  text-red-800 text-center rounded-full py-1 cursor-pointer  w-24 m-auto" onClick={() => handleDelete(item?._id)} >delete</p>
                                 </td>
@@ -204,7 +203,7 @@ const AskForAdvertisement = () => {
                     </form>
                 </div>
             </dialog>
-            <dialog id="my_modal_update" className="modal">
+            {/* <dialog id="my_modal_update" className="modal">
                 <div className="modal-box w-11/12">
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -236,7 +235,7 @@ const AskForAdvertisement = () => {
                         </div>
                     </form>
                 </div>
-            </dialog>
+            </dialog> */}
 
 
 
