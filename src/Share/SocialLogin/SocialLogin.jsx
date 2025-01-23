@@ -9,24 +9,26 @@ const SocialLogin = () => {
     const {githubLogin, GoogleLogin} = useAuth()
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
+    const {user} = useAuth()
 
-    const handleGoogleLogin =()=>{
+    const handleGoogleLogin =async()=>{
         GoogleLogin()
         .then(res=>{
             console.log(res);
             navigate('/')
 
 
-            // const userData = {
-            //     userName : res.user?.displayName,
-            //     email: res.user?.email,
-            //     photo: res.user?.photoURL,
-            //     role: "user"
-            // }
-            // axiosPublic.post('/users', userData)
-            // .then(res=>{
-            //     console.log(res.data);
+            const userData = {
+                userName : res.user?.displayName,
+                email: res.user?.email,
+                photo: res.user?.photoURL,
+                role: "user"
+            }
+            axiosPublic.post(`/users/${res.user?.email}`, userData)
+            .then(res=>{
+                console.log(res.data);
             // navigate('/')
+            })
 
                 
             // })
@@ -43,17 +45,17 @@ const SocialLogin = () => {
         .then(res=>{
             console.log(res);
             navigate('/')
-            // const userData = {
-            //     userName : res.user?.displayName,
-            //     email: res.user?.email,
-            //     photo: res.user?.photoURL,
-            //     role: "user"
-            // }
-            // axiosPublic.post('/users', userData)
-            // .then(res=>{
-            //     console.log(res.data);
+            const userData = {
+                userName : res.user?.displayName,
+                email: res.user?.email,
+                photo: res.user?.photoURL,
+                role: "user"
+            }
+            axiosPublic.post(`/users/${res.user?.email}`, userData)
+            .then(res=>{
+                console.log(res.data);
             // navigate('/')
-            // })
+            })
             
         })
         .catch(err=>{

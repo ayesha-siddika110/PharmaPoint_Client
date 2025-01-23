@@ -13,7 +13,7 @@ const SellerRoute = ({children}) => {
     if (role === 'seller') {
         return children;
     }
-    return <Navigate to="/"  replace></Navigate>
+    return <Navigate to="/dashboard/sellerHome"  replace></Navigate>
 };
 
 export default SellerRoute;

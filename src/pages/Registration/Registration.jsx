@@ -5,6 +5,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { toast } from 'react-toastify';
 
 const Registration = () => {
     const navigate = useNavigate()
@@ -37,20 +38,22 @@ const Registration = () => {
                 updateProfileData(updateDatas)
                     .then(response => {
                         console.log(response);
-                        // const userData = {
-                        //     userName: data?.name,
-                        //     email: data?.email,
-                        //     photo: res.data.data.display_url,
-                        //     role: data?.category
-                        // }
-                        // axiosPublic.post('/users', userData)
-                        //     .then(res => {
-                        //         console.log(res.data);
-                        //         if (res.data.insertedId) {
-                        //             // toast.success('Successfully Register & save to database')
-                        //         }
+                        const userData = {
+                            userName: data?.name,
+                            email: data?.email,
+                            photo: res.data.data.display_url,
+                            role: data?.category
+                        }
+                        console.log(userData);
+                        
+                        axiosPublic.post(`/users/${data?.email}`, userData)
+                            .then(res => {
+                                console.log(res.data);
+                                if (res.data.insertedId) {
+                                    toast.success('Successfully Register & save to database')
+                                }
 
-                        //     })
+                            })
                         navigate('/')
 
                     })

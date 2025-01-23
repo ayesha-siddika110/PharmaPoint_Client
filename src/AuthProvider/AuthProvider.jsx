@@ -52,18 +52,17 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, async currentUser => {
             setLoading(false)
             setUser(currentUser)
-            console.log(import.meta.env.VITE_API_URL);
+            // console.log(import.meta.env.VITE_API_URL);
             console.log(localStorage.getItem("access-token"));
             
             
             if (currentUser) {
                 // save data user
-                await axios.post(`http://localhost:3000/users/${currentUser?.email}`,{
-                    name: currentUser?.displayName,
-                    image: currentUser?.photoURL,
-                    email: currentUser?.email
-                    
-                })
+                // await axios.post(`http://localhost:3000/users/${currentUser?.email}`,{
+                //     name: currentUser?.displayName,
+                //     image: currentUser?.photoURL,
+                //     email: currentUser?.email,
+                // })
                 
 
                 // get token and store client
