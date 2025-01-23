@@ -44,8 +44,9 @@ const AddProduct = ({refetch}) => {
             if(resData.data.insertedId){
                 toast.success("successfully Add The product")
                 refetch()
+                reset()
             }
-            reset()
+            
             
         })
 
@@ -55,14 +56,10 @@ const AddProduct = ({refetch}) => {
     console.log(loading);
     
     return (
-        <div className=''>
+ 
 
 
-            <div
-
-                className=''
-
-            >
+            <>
 
                 <div className='w-full h-full m-auto flex justify-center items-center'>
 
@@ -143,8 +140,8 @@ const AddProduct = ({refetch}) => {
                     </form>
 
                 </div>
-            </div>
-        </div>
+            </>
+
     );
 };
 

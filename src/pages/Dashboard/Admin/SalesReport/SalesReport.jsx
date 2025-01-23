@@ -56,13 +56,13 @@ const SalesReport = () => {
                 imgWidth * ratio,
                 imgHeight * ratio,
             );
-            pdf.save('invoice.pdf');
+            pdf.save('SalesReport.pdf');
         });
 
     }
     return (
         <div>
-            <div className="w-[90%] m-auto">
+            <div className="w-[100%] m-auto">
                 <div className="overflow-x-auto">
 
                     <div className="flex justify-end items-center mt-10 mb-8">

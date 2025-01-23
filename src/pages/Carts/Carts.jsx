@@ -48,9 +48,10 @@ const Carts = () => {
 
     const totalPrice = cart.reduce((total, item) => {
         return total + parseFloat(item.price);
-      }, 0);
-      
-      console.log(totalPrice);
+    }, 0);
+    
+
+    console.log(totalPrice);
 
 
     return (
@@ -62,11 +63,15 @@ const Carts = () => {
                 isLoading || <>
                     <div className='w-[90%] m-auto'>
                         <div>
-                            <DashboardHeading title={"My Cart"}></DashboardHeading><p>{cart?.length}</p>
+                            <DashboardHeading title={"My Cart"}></DashboardHeading>
                         </div>
-                        <p className='text-4xl'>totalPrice : {totalPrice}</p>
+                        <div className='flex justify-end gap-10 pb-10'>
+                            <p className='text-2xl text-black'>Total Price : {totalPrice}</p>
 
-                        <p><Link to="/checkout" ><button className="bg-[#68bac5] w-20 text-center py-1 rounded-full text-[#033B4C] cursor-pointer" disabled={!cart.length}>Checkout</button></Link></p>
+                            <p><Link to="/checkout" ><button className=" text-center py-2 px-3  text-white bg-[#033B4C] cursor-pointer" disabled={!cart.length}>Checkout</button></Link></p>
+
+                        </div>
+
                         <div>
                             <table className="table">
                                 {/* head */}
@@ -79,7 +84,6 @@ const Carts = () => {
                                         <th>number of product</th>
                                         <th>Price</th>
                                         <th>Delete cart</th>
-                                        <th>Checkout</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,12 +94,12 @@ const Carts = () => {
                                             <td>
                                                 <p>{item?.productName}</p>
                                                 <p>Dynamic company</p>
-                                                <p>Quantity : {item?.quantity}</p>
+                                                {/* <p>Quantity : {item?.quantity}</p> */}
                                             </td>
 
                                             <td>
 
-                                                <input type="number" defaultValue={1} name="" id="" />
+                                               <p>{item?.quantity}</p>
 
                                             </td>
                                             <td>{item?.price}</td>

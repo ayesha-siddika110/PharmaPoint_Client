@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import {  useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import DashboardHeading from "../../../../Share/dashboardHeading/DashboardHeading";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 
 // TODO : update delete category
 
@@ -16,11 +18,12 @@ const ManageCategory = () => {
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic()
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const onSubmit = async (data) => {
         console.log(data);
         const imageFile = { image: data.image[0] }
-        const res = await axiosSecure.post(image_hosting_api, imageFile, {
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
@@ -109,6 +112,7 @@ const ManageCategory = () => {
     }
     return (
         <div className="w-[90%] m-auto">
+            <DashboardHeading title={"Manage Category"}></DashboardHeading>
             <div className="overflow-x-auto">
                 <h1 className="text-2xl font-bold text-center my-5">Manage Category</h1>
                 <div className="flex justify-end items-center mt-10 mb-8">

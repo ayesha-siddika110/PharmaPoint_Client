@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import './styleD.css'
 import useRole from '../../Hooks/useRole';
 import { MdVerified } from "react-icons/md";
+import { FaArrowLeft } from 'react-icons/fa';
 
 const Dashboard = () => {
     const [role] = useRole()
@@ -71,10 +72,11 @@ const Dashboard = () => {
 
 
             </div>
-            <div className='ml-[20%] w-[100%]'>
-                <div className='w-full flex justify-end'>
+            <div className='ml-[25%] w-[100%]'>
+                <div className='w-full flex justify-between'>
 
-                <p className=' mt-8 mr-[5%] font-semibold p-2 border-2 flex rounded-3xl justify-center items-center gap-2 w-[100px] '><span>{role}</span><MdVerified className='text-[#033B4C]' /></p>
+                <Link to="/" className=' mt-8  font-semibold p-2 border-2 flex rounded-3xl justify-center items-center gap-2 w-[100px] '><FaArrowLeft></FaArrowLeft><span>Home</span></Link>
+                <p className=' mt-8 mr-[5%]  font-semibold p-2 border-2 flex rounded-3xl justify-center items-center gap-2 w-[100px] '><span>{role}</span><MdVerified className='text-[#033B4C]' /></p>
                 </div>
                 <Outlet></Outlet>
 

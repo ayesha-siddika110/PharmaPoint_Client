@@ -9,6 +9,7 @@ import { FaRegEye } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import LoadingSign from "../../Share/LoadingSign/LoadingSign";
 
 const PaginatedProducts = () => {
   const axiosPublic = useAxiosPublic();
@@ -73,7 +74,7 @@ const PaginatedProducts = () => {
           productName: item?.productName,
           category: item?.category,
           price: item?.price,
-          quantity, //TODO: quantity set increase decrease
+          quantity: item?.quantity, //TODO: quantity set increase decrease
           productPhoto: item?.productPhoto,
           sellerName: item?.sellerName,
           productId: item?._id,
@@ -115,21 +116,14 @@ const PaginatedProducts = () => {
   const { category: itemCategory, description, price, productName, productPhoto, quantity, sellerName } = detailItem || {}
 
   if (isLoading)
-    return <div className="text-center text-blue-600">Loading...</div>;
+    return <LoadingSign></LoadingSign>
   if (error)
-    return <div className="text-center text-red-500">Error loading data</div>;
+    return <div className="text-center text-gray-500 py-32 text-5xl">NO DATA FOUND</div>;
 
   return (
     <div className="">
-      <h1 className="text-2xl font-bold text-center mb-4">Products</h1>
-      <div className="flex justify-end">
-        <select className="select select-bordered w-[200px]">
-          <option disabled selected>Normal</option>
-          <option>Normal Apple</option>
-          <option>Normal Orange</option>
-          <option>Normal Tomato</option>
-        </select>
-
+     
+      <div className="flex justify-end w-[90%] m-auto pb-8 gap-8">
         {/* search */}
         <label className="input input-bordered flex items-center gap-2">
           <input type="text" className="grow" placeholder="Search" />
@@ -144,6 +138,13 @@ const PaginatedProducts = () => {
               clipRule="evenodd" />
           </svg>
         </label>
+        <select className="select select-bordered w-[200px]">
+          <option disabled selected>Sort By Price</option>
+          <option>low to high</option>
+          <option>high to low</option>
+        </select>
+
+        
       </div>
       {/* Sort */}
       <div className="overflow-x-auto w-[90%] m-auto border">
@@ -154,7 +155,7 @@ const PaginatedProducts = () => {
               <th>image</th>
               <th>Name</th>
               <th>Company</th> {/**TODO: include the database company field */}
-              {/* <th>quantity</th> */}
+              <th>Price</th>
               <th>Add To Cart</th>
               <th>Details</th>
             </tr>
@@ -166,6 +167,7 @@ const PaginatedProducts = () => {
                 <td><img src={item?.productPhoto} className="h-16 w-24 object-cover" alt="" /></td>
                 <td>{item?.productName}</td>
                 <td>Dynamic company</td>
+                <td>{item?.price}</td>
                 {/* <td><input type="number" value={purchaseQuantity} onChange={()=>handlepurchaseQuantity(index)} /></td> */}
                 <td><p className="bg-[#4bb4d4a1] w-20 text-center py-1 rounded-full text-[#033B4C] cursor-pointer" onClick={() => handleSelectToCart(item)}>Select</p></td>
 
@@ -176,27 +178,17 @@ const PaginatedProducts = () => {
           </tbody>
         </table>
       </div>
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {data?.products?.map((product) => (
-          <div
-            key={product._id}
-            className="border rounded-lg p-4 shadow hover:shadow-lg"
-          >
-            <h3 className="text-lg font-semibold">{product.productName}</h3>
-            <p className="text-gray-700">Price: ${product.price}</p>
-          </div>
-        ))}
-      </div> */}
+      
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal" role="dialog">
-        <div className="modal-box w-[60%] max-w-5xl relative">
-          <div className="flex">
-            <div className="w-[50%] mt-16">
+        <div className="modal-box md:w-[60%] max-w-5xl relative">
+          <div className="md:flex">
+            <div className="w-[50%] mt-16 font-semibold space-y-3">
               <h1 className="">Medicine Name : {productName}</h1>
               <p>Category : {itemCategory}</p>
               <p>Price : {price} TK</p>
-              <p>Quantity : {quantity} TK</p>
-              <p>Seller Name : {sellerName} TK</p>
+              <p>Quantity : {quantity} </p>
+              <p>Seller Name : {sellerName}</p>
               <h1 className="text-justify pr-6">Details : {description}</h1>
             </div>
             <img className="w-[50%] mt-16" src={productPhoto} alt="" />

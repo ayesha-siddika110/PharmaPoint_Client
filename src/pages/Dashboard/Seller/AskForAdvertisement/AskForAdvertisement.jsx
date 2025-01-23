@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import useAdvertise from "../../../../Hooks/useAdvertise";
 import { useState } from "react";
 import { ImSpinner9 } from "react-icons/im";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import axios from "axios";
 
 
 
@@ -16,12 +18,13 @@ const AskForAdvertisement = () => {
     const [loading, setLoading] = useState(false)
 
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic()
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const onSubmit = async (data) => {
         // console.log(data);
         const imageFile = { image: data.image[0] }
         setLoading(true)
-        const res = await axiosSecure.post(image_hosting_api, imageFile, {
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
@@ -31,7 +34,7 @@ const AskForAdvertisement = () => {
         console.log(alldata);
 
 
-        axiosSecure.post('/advertise', alldata)
+        axiosSecure.post('http://localhost:3000/advertise', alldata)
             .then(res => {
                 setLoading(false)
                 refetch()

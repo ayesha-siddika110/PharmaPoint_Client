@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import DashboardHeading from "../../../../Share/dashboardHeading/DashboardHeading";
 
 const ManageUser = () => {
     const axiosSecure = useAxiosSecure();
@@ -28,12 +29,12 @@ const ManageUser = () => {
     };
 
     return (
-        <div>
-            <h1 className="text-2xl font-bold text-center my-5">Manage User</h1>
+        <div className="w-[90%] m-auto">
+            <DashboardHeading title={"Manage User"}></DashboardHeading>
             <div className="overflow-x-auto">
-                <table className="table table-zebra w-[90%] m-auto">
+                <table className="table table-zebra ">
                     {/* Head */}
-                    <thead className="bg-[#23505ecb] rounded-lg text-white">
+                    <thead className="bg-[#033B4C] rounded-lg text-white">
                         <tr>
                             <th></th>
                             <th>Photo</th>

@@ -5,6 +5,7 @@ import LoadingSign from '../../../../Share/LoadingSign/LoadingSign';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import useRole from '../../../../Hooks/useRole';
+import DashboardHeading from '../../../../Share/dashboardHeading/DashboardHeading';
 
 const BannerAdvertise = () => {
     const axiosSecure = useAxiosSecure()
@@ -22,86 +23,90 @@ const BannerAdvertise = () => {
         <LoadingSign></LoadingSign>
     }
 
-    
-        
-        const handleUpdate = (id) => {
-           Swal.fire({
-                       title: "Are you sure?",
-                       text: "You won't be able to revert this!",
-                       icon: "warning",
-                       showCancelButton: true,
-                       confirmButtonColor: "#3085d6",
-                       cancelButtonColor: "#d33",
-                       confirmButtonText: "Yes, accept!"
-                   }).then((result) => {
-                       if (result.isConfirmed) {
-                        if(advertise.find(item=>item.status==='active')){
-                            axiosSecure.patch(`/advertise/${id}`, { status: 'pending' })
-                           .then(res => {
-                               
-                           
-                               Swal.fire({
-                                   title: "removed from slide",
-                                   text: "This advertise has been removed from slide",
-                                   icon: "success"
-                               });
-                               refetch()
-                           })
-                            return}
-                            else{
-                                axiosSecure.patch(`/advertise/${id}`, { status: 'active' })
-                           .then(res => {
-                               
-                           
-                               Swal.fire({
-                                   title: "Advertise active",
-                                   text: "This advertise has been activated",
-                                   icon: "success"
-                               });
-                               refetch()
-                           })
 
-                            }
-                           
-                           
-                       }
-                   });
-    
-    
-        }
-    
-        // delete category
-        const handleDelete = (id) => {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to delete this category!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    axiosSecure.delete(`/advertise/${id}`)
-                    .then(res=>{
-                        if(res.data.deletedCount>0){
+
+    const handleUpdate = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, accept!"
+        }).then((result) => {
+            const advertisement = advertise?.find(item => item._id === id);
+            
+            if (result.isConfirmed) {
+                if (advertisement?.status === 'active') {
+                    axiosSecure.patch(`/advertise/${id}`, { status: 'pending' })
+                        .then(res => {
+
+
+                            Swal.fire({
+                                title: "removed from slide",
+                                text: "This advertise has been removed from slide",
+                                icon: "success"
+                            });
+                            refetch()
+                        })
+                    return
+                }
+
+                else {
+                    axiosSecure.patch(`/advertise/${id}`, { status: 'active' })
+                        .then(res => {
+
+
+                            Swal.fire({
+                                title: "Advertise active",
+                                text: "This advertise has been activated",
+                                icon: "success"
+                            });
+                            refetch()
+                        })
+
+                }
+
+
+            }
+        });
+
+
+    }
+
+    // delete category
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this category!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/advertise/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
                             Swal.fire(
                                 'Deleted!',
                                 'Your file has been deleted.',
                                 'success'
-                              )
-                              refetch()
+                            )
+                            refetch()
                         }
                     })
-                }
-              })
-        }
+            }
+        })
+    }
 
     return (
-        <div className='w-[90%] m-auto'>
+        <div className='w-[90%]  m-auto '>
 
-            <h1>Banner Advertise</h1>
-            <table className="table table-zebra ">
+            <DashboardHeading title={"Banner Advertise"}></DashboardHeading>
+            <table className="table overflow-x-scroll w-full ">
                 {/* head */}
                 <thead className="bg-[#033B4C] rounded-lg text-white">
                     <tr className="h-12 font-normal text-center text-[14px]">
@@ -130,10 +135,10 @@ const BannerAdvertise = () => {
                                     <p>{item?.description}</p>
                                 </td>
                                 <td>
-                                    <p className={`${item?.status === 'active'? 'text-green-600' : 'text-red-600' } font-semibold`}>{item?.status}</p>
+                                    <p className={`${item?.status === 'active' ? 'text-green-600' : 'text-red-600'} font-semibold`}>{item?.status}</p>
                                 </td>
                                 <td>
-                                            <p className={` text-center rounded-full py-1 cursor-pointer m-auto ${item?.status === 'active'? 'bg-red-300 text-red-600' : 'bg-green-300  text-green-800' }`} onClick={() => handleUpdate(item?._id)} 
+                                    <p className={` text-center rounded-full py-1 cursor-pointer m-auto ${item?.status === 'active' ? 'bg-red-300 text-red-600' : 'bg-green-300  text-green-800'}`} onClick={() => handleUpdate(item?._id)}
                                     >{item?.status === 'active' ? 'remove from Silde' : 'Add To Slide'}</p>
                                 </td>
                                 <td>

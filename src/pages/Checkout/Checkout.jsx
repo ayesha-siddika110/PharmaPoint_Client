@@ -85,16 +85,18 @@ const CheckoutForm = () => {
             if (paymentIntent.status === 'succeeded') {
                 console.log('transaction id', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
-
+                const totalQuantity = cart.length
                 //save in the database
                 const payment = {
-                    buyerEmail: user.email,
+                    buyerEmail: user?.email,
                     price: totalPrice, //TODO: convert to item price
                     transactionId: paymentIntent.id,
                     date: new Date(),  
-                    cartIds: cart.map(item => item._id),
-                    productItemIds: cart.map(item => item.productId),
+                    cartIds: cart?.map(item => item._id),
+                    productItemIds: cart?.map(item => item.productId),
                     status: 'pending',
+                    quantity: totalQuantity,
+                
                     sellerEmail: cart?.map(item => item.sellerEmail)
                 }
 
@@ -122,8 +124,11 @@ const CheckoutForm = () => {
                 options={{
                     style: {
                         base: {
-                            fontSize: '16px',
+                            fontSize: '20px',
                             color: '#424770',
+                            padding: '10px',
+                            margin: '10px',
+                            backgroundColor: 'slate',
                             '::placeholder': {
                                 color: '#aab7c4',
                             },
@@ -134,7 +139,7 @@ const CheckoutForm = () => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe}>
+            <button type="submit" className='bg-[#033B4C] py-2 px-20 text-center text-white mt-10' disabled={!stripe}>
                 Pay
             </button>
             <p className='text-red-600'>{error}</p>
@@ -146,7 +151,8 @@ const CheckoutForm = () => {
 const stripePromise = loadStripe(import.meta.env.VITE_payment_Publiash_Key);
 const Checkout = () => {
     return (
-        <div className='w-[50%] m-auto'>
+        <div className='lg:w-[60%] my-10 m-auto p-10 py-32 border shadow-2xl bg-slate-200'>
+
             <Elements stripe={stripePromise}>
                 <CheckoutForm />
             </Elements>

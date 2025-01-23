@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-black text-white py-8 mt-20">
             <div className="container mx-auto px-4">
-                <div className="flex justify-between w-full">
+                <div className="lg:flex justify-between w-full">
                     {/* Left Section */}
                     <div className="mb-6 md:w-[50%] md:mb-0">
                         <img src={logo} alt="" />
@@ -14,7 +14,7 @@ const Footer = () => {
                     </div>
 
                     {/* Center Section */}
-                    <div className="flex space-x-12 mb-6 md:mb-0 md:w-[50%]">
+                    <div className="lg:flex lg:space-y-0 space-y-5 lg:space-x-12 mb-6 md:mb-0 md:w-[50%]">
                         <div className='w-[40%]'>
                             <h3 className="font-semibold mb-4">More PharmaPoint</h3>
                             <ul className="space-y-2 text-sm">

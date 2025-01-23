@@ -6,6 +6,7 @@ import { FaRegEye } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import DashboardHeading from "../../Share/dashboardHeading/DashboardHeading";
 // import { useMutation, useQuery } from "@tanstack/react-query";
 
 
@@ -51,17 +52,17 @@ const CategoryDatas = () => {
 
 
                 const itemData = {
-                    productName : item?.productName,
-                    category : item?.category,
-                    price : item?.price,
-                    quantity, //TODO: quantity set increase decrease
+                    productName: item?.productName,
+                    category: item?.category,
+                    price: item?.price,
+                    quantity,
                     productPhoto: item?.productPhoto,
-                    sellerName : item?.sellerName,
+                    sellerName: item?.sellerName,
                     productId: item?._id,
                     sellerEmail: item?.sellerEmail,
                 }
                 console.log(itemData);
-                
+
                 axiospublic.post('/cart', itemData)
                     .then(res => {
 
@@ -96,12 +97,13 @@ const CategoryDatas = () => {
     console.log(detailItem);
 
     const { category: itemCategory, description, price, productName, productPhoto, quantity, sellerName } = detailItem || {}
-
+  
 
     return (
-        <div className="w-[80%] m-auto">
+        <div className="w-[90%] m-auto">
+            <DashboardHeading title={itemCategory}></DashboardHeading>
             <div className="overflow-x-auto w-full">
-                <table className="table">
+            <table className="table">
                     <thead>
                         <tr>
                             <th></th>
@@ -133,16 +135,16 @@ const CategoryDatas = () => {
             <input type="checkbox" id="my_modal_6" className="modal-toggle" />
             <div className="modal" role="dialog">
                 <div className="modal-box w-[60%] max-w-5xl relative">
-                    <div className="flex">
-                        <div className="w-[50%] mt-16">
+                    <div className="md:flex justify-between items-start">
+                        <div className="w-[40%] mt-16 font-semibold space-y-3">
                             <h1 className="">Medicine Name : {productName}</h1>
                             <p>Category : {itemCategory}</p>
                             <p>Price : {price} TK</p>
-                            <p>Quantity : {quantity} TK</p>
-                            <p>Seller Name : {sellerName} TK</p>
+                            <p>Quantity : {quantity} </p>
+                            <p>Seller Name : {sellerName}</p>
                             <h1 className="text-justify pr-6">Details : {description}</h1>
                         </div>
-                        <img className="w-[50%] mt-16" src={productPhoto} alt="" />
+                        <img className="w-[50%] mt-16 object-contain" src={productPhoto} alt="" />
 
                     </div>
                     <div className="modal-action absolute top-0 right-4 ">

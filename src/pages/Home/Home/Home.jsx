@@ -1,7 +1,8 @@
 import useAuth from '../../../Hooks/useAuth';
+import AdviceDoctor from '../AdviceDoctor/AdviceDoctor';
 import Category from '../Category/Category';
 import Discount from '../Discount/Discount';
-import Products from '../Products/Products';
+import HowToShop from '../HowTOShop/HowToShop';
 import Slider from '../Slider/Slider';
 import SmallCards from '../SmallCards/SmallCards';
 
@@ -18,7 +19,11 @@ const Home = () => {
             {/* discount */}
             <Discount></Discount>
             {/* how to shop online */}
+            <HowToShop></HowToShop>
             {/* advice from health expert */}
+            <AdviceDoctor></AdviceDoctor>
+
+
             
         </div>
     );

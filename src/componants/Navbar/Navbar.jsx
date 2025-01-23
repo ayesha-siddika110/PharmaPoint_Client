@@ -5,6 +5,7 @@ import logo from '../../assets/Logo/darklogo.png'
 import { BsCart2 } from "react-icons/bs";
 import useCart from "../../Hooks/useCart";
 import './Navbar.css'
+import useRole from "../../Hooks/useRole";
 
 
 
@@ -25,12 +26,13 @@ const Navbar = () => {
     }
   
     const [cart] = useCart()
+    const [role] = useRole()
     
 
     const links = <>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/shop">Shop</NavLink>
-        <NavLink to="/language">Languages</NavLink>
+        <NavLink className={'text-center px-5 h-10 flex justify-center items-center'}  to="/">Home</NavLink>
+        <NavLink className={'text-center px-5 h-10 flex justify-center items-center'} to="/shop">Shop</NavLink>
+        {/* <NavLink to="/language">Languages</NavLink> */}
 
     </>
     const profile = <>
@@ -51,7 +53,18 @@ const Navbar = () => {
                             <li className="flex justify-center items-center"><img src={user?.photoURL} alt="profile image" className="md:w-24 md:h-24 w-14 h-14  rounded-full object-cover p-1 border-2 border-[#012029]" /></li>
                             <li className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3 mt-8 "><Link to="/UpdateProfile">Update Profile</Link></li>
 
-                            <li className="  "><Link to="/dashboard" className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3">Dashboard</Link></li>
+                            <li className="  ">
+                                {
+                                    role === 'admin' && <Link to={`/dashboard/adminHome`} className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3">Dashboard</Link>
+                                }
+                                {
+                                    role === 'seller' && <Link to={`/dashboard/sellerHome`} className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3">Dashboard</Link>
+                                }
+                                {
+                                    role === 'user' && <Link to={`/dashboard/userPaymentHistory`} className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3">Dashboard</Link>
+                                }
+                                
+                                </li>
 
                             <li className="py-2  hover:bg-[#033b4c42] pl-3 " onClick={handleSignOut}>Log Out</li>
                         </ul>
@@ -59,12 +72,12 @@ const Navbar = () => {
                 </div>
             </>
                 :
-                <NavLink to="/login" className={`bg-[#033B4C] py-2 px-4 text-white uppercase`}>Join us</NavLink>
+                <NavLink to="/login" className={`bg-white bg-opacity-50 py-2 px-4 text-white uppercase`}>Join us</NavLink>
         }
 
     </>
     return (
-        <div className={`bg-[#033B4C] text-white`}>
+        <div className={`bg-[#033B4C] text-white sticky top-0 z-50`}>
             <div className={`navbar  w-[90%] m-auto flex justify-between`}>
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -94,7 +107,7 @@ const Navbar = () => {
 
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className=" flex px-1 space-x-3 items-center">
+                    <ul className=" flex gap-8  w-[200px]  text-center items-center">
                         {links}
                     </ul>
                 </div>

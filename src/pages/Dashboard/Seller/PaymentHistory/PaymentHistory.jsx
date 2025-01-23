@@ -63,7 +63,7 @@ const PaymentHistory = () => {
                                             <p>product er name</p>
                                         </td>
                                         <td>
-                                            <p>Quantity</p>
+                                            <p>{item?.quantity}</p>
                                         </td>
                                         <td>
                                             <p>{item?.price / 100}</p>
