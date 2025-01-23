@@ -22,15 +22,15 @@ const Dashboard = () => {
             <div className='w-[20%] bg-[#033B4C] fixed left-0 h-[100vh] overflow-y-scroll overflow-x-hidden'>
                 {/* logo */}
                 <Link to='/'>
-                    <img src={logo} className='w-full object-contain pt-6' alt="" />
+                    <img src={logo} className='w-[80%] m-auto object-contain pt-6' alt="" />
                 </Link>
 
                 <div>
-                    <ul className='text-white  pl-6 mt-8 flex flex-col'>
-                        <p className='text-red-600'>admin route</p>
+                    <ul className='text-white  pl-6 mt-28 flex flex-col'>
                         
+                        {/* admin route */}
                         {role === 'admin' && <>
-                            <Link><LiElement name={"Admin Home"}></LiElement></Link>
+                            <NavLink to="/dashboard/adminHome"><LiElement name={"Admin Home"}></LiElement></NavLink>
 
                             <NavLink to="/dashboard/manageUsers"><LiElement name={"Manage Users"}></LiElement></NavLink>
 
@@ -45,8 +45,8 @@ const Dashboard = () => {
 
                         </>}
 
-
-                        <p className='text-red-600'>seller route</p>
+                            {/* seller route */}
+                        
                         {
                             role === 'seller' && <>
                                 <NavLink to="/dashboard/sellerHome"><LiElement name={"Seller Home"}></LiElement></NavLink>
@@ -58,7 +58,7 @@ const Dashboard = () => {
                             </>
                         }
 
-                        <p className='text-red-600'>user route</p>
+                        {/* user route */}
                         {
                             role === 'user' && <>
                                 <NavLink to="/dashboard/userPaymentHistory"><LiElement name={"User Payment History"}></LiElement></NavLink>

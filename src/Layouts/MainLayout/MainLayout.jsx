@@ -13,7 +13,10 @@ const MainLayout = () => {
             <ToastContainer />
             <Toaster/>
             {path || <Navbar></Navbar>}
+            <div className='min-h-[80vh]'>
+
             <Outlet></Outlet>
+            </div>
             {path || <Footer></Footer>}
         </div>
     );

@@ -25,6 +25,9 @@ import PrivetRouter from "../PrivetRoute/PrivetRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import UserRoute from "../UserRoute/UserRoute";
+import AdminHome from "../../pages/Dashboard/Admin/AdminHome/AdminHome";
+import Shop from "../../pages/Shop/Shop";
+import UpdateProfile from "../../pages/UpdateProfile/UpdateProfile";
 
 export  const router = createBrowserRouter([
     {
@@ -34,6 +37,10 @@ export  const router = createBrowserRouter([
         {
           path: "/",
           element: <Home></Home>
+        },
+        {
+          path: "/shop",
+          element: <Shop></Shop>
         },
         {
           path: "/login",
@@ -46,6 +53,10 @@ export  const router = createBrowserRouter([
         {
           path: "/category/:category",
           element: <CategoryDatas></CategoryDatas>
+        },
+        {
+          path: "/UpdateProfile",
+          element: <UpdateProfile></UpdateProfile>
         },
 
         // payment //make it private
@@ -72,6 +83,10 @@ export  const router = createBrowserRouter([
       children: [
        
         // admin route
+        {
+          path: "/dashboard/adminHome",
+          element: <PrivetRouter><AdminRoute><AdminHome></AdminHome></AdminRoute></PrivetRouter>
+        },
         {
           path: "/dashboard/manageUsers",
           element: <PrivetRouter><AdminRoute><ManageUser></ManageUser></AdminRoute></PrivetRouter>

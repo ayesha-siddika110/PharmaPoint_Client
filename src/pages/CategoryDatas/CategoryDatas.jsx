@@ -48,26 +48,7 @@ const CategoryDatas = () => {
             confirmButtonText: "Yes, Add!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // console.log(item);
-                // const { data: carts, isLoading, refetch } = useQuery({
-                //     queryKey: ['carts'],
-                //     queryFn: async () => {
-                //       const res = await axiospublic.get('/cart'); // Adjust the endpoint as necessary
-                //       return res.data;
-                //     },
-                //   });
 
-                // const mutation = useMutation({
-
-                //     mutationFn: async()=>{
-                //         const res = await axiospublic.post('/cart', item)
-                //         return res.data
-                //     },
-                //     onSuccess: (data) => {
-                //         console.log('Item added:', data);
-                //         refetch(); // Refetch the cart data after successfully adding the item
-                //       },
-                // })
 
                 const itemData = {
                     productName : item?.productName,
@@ -121,7 +102,6 @@ const CategoryDatas = () => {
         <div className="w-[80%] m-auto">
             <div className="overflow-x-auto w-full">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th></th>

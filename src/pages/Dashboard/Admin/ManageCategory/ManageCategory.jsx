@@ -108,7 +108,7 @@ const ManageCategory = () => {
           })
     }
     return (
-        <div className="w-[80%] m-auto">
+        <div className="w-[90%] m-auto">
             <div className="overflow-x-auto">
                 <h1 className="text-2xl font-bold text-center my-5">Manage Category</h1>
                 <div className="flex justify-end items-center mt-10 mb-8">

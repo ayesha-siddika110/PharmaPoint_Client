@@ -62,7 +62,7 @@ const SalesReport = () => {
     }
     return (
         <div>
-            <div className="w-[80%] m-auto">
+            <div className="w-[90%] m-auto">
                 <div className="overflow-x-auto">
 
                     <div className="flex justify-end items-center mt-10 mb-8">
@@ -83,22 +83,22 @@ const SalesReport = () => {
                                     <tr className="h-12 font-normal text-center text-[14px]">
                                         <th>#</th>
                                         <th>Medicine name</th>
-                                        <th>seller email</th>
-                                        <th>Buyer email</th>
+                                        {/* <th >seller email</th> */}
                                         <th>Total Price</th>
+                                        <th>Transaction Id</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                         payments.map((item, index) => (
-                                            <tr key={index}>
+                                            <tr key={index} className='textcenter'>
                                                 <td>{index + 1}</td>
                                                 <td>ousodh er name</td>
 
-                                                <td>
+                                                {/* <td>
                                                     <p>{item?.sellerEmail}</p>
-                                                </td>
+                                                </td> */}
                                                 <td>
                                                     <p>{item?.price / 100}</p>
                                                 </td>
@@ -111,9 +111,9 @@ const SalesReport = () => {
                                                     <p className={`text-red-900 font-semibold text-center rounded-full py-1 cursor-pointer w-24 m-auto ${item?.status === 'pending' && 'text-green-900'}`}
                                                     >{item?.status}</p>
                                                 </td>
-                                                <td>
+                                                {/* <td>
                                                     <button disabled={item?.status === 'paid'} className={`bg-green-300  text-green-800 text-center rounded-full py-1 cursor-pointer  w-32 m-auto ${item?.status === 'paid' ? 'bg-gray-400 text-gray-500' : ''}`} >accept payment</button>
-                                                </td>
+                                                </td> */}
                                             </tr>
                                         ))
                                     }

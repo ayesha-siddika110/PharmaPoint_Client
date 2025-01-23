@@ -49,7 +49,7 @@ const Navbar = () => {
                         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className={`bg-[#033B4C]  mt-[80px]   lg:w-[30%] md:w-[30%] w-[90%]  p-4 `}>
                             <li className="flex justify-center items-center"><img src={user?.photoURL} alt="profile image" className="md:w-24 md:h-24 w-14 h-14  rounded-full object-cover p-1 border-2 border-[#012029]" /></li>
-                            <li className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3 mt-8 "><Link>Update Profile</Link></li>
+                            <li className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3 mt-8 "><Link to="/UpdateProfile">Update Profile</Link></li>
 
                             <li className="  "><Link to="/dashboard" className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3">Dashboard</Link></li>
 

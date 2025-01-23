@@ -98,7 +98,7 @@ const BannerAdvertise = () => {
         }
 
     return (
-        <div className='w-[80%] m-auto'>
+        <div className='w-[90%] m-auto'>
 
             <h1>Banner Advertise</h1>
             <table className="table table-zebra ">
