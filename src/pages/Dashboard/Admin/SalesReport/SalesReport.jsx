@@ -62,7 +62,7 @@ const SalesReport = () => {
     }
     return (
         <div>
-            <div className="w-[100%] m-auto">
+            <div className="w-[95%] m-auto">
                 <div className="overflow-x-auto">
 
                     <div className="flex justify-end items-center mt-10 mb-8">

@@ -96,6 +96,7 @@ const CheckoutForm = () => {
                     productItemIds: cart?.map(item => item.productId),
                     status: 'pending',
                     quantity: totalQuantity,
+                    productsName: cart?.map(item=> item?.productName),
                 
                     sellerEmail: cart?.map(item => item.sellerEmail)
                 }

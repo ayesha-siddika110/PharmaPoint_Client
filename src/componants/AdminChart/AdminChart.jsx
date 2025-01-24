@@ -36,7 +36,7 @@ const {data} = useQuery({
 
 })
   return (
-    <div style={{ width: "100%", height: 300 }}>
+    <div style={{ width: "80%", height: 300 }}>
       <ResponsiveContainer>
         <LineChart data={data} margin={{ top: 20 }}>
           <CartesianGrid strokeDasharray="3 3" />

@@ -6,6 +6,7 @@ import axios from 'axios';
 import useCart from '../../Hooks/useCart';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 const Carts = () => {
     const [cart, refetch, isLoading] = useCart()
@@ -56,6 +57,9 @@ const Carts = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>My Cart - PharmaPoint</title>
+            </Helmet>
             {
                 isLoading && <p className='animate-spin text-7xl w-[100%] h-[60vh] flex items-center justify-center '><ImSpinner3 /></p>
             }

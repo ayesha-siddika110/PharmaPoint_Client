@@ -25,7 +25,7 @@ const Navbar = () => {
 
     }
   
-    const [cart] = useCart()
+    const [cart,refetch, isLoading] = useCart()
     const [role] = useRole()
     
 

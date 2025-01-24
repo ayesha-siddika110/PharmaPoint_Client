@@ -1,7 +1,7 @@
 import { PieChart } from '@mui/x-charts/PieChart';
 const AdminProgress = () => {
     return (
-        <div>
+        <div className='w-[80%] '>
             <PieChart
                 series={[
                     {

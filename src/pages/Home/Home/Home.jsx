@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import useAuth from '../../../Hooks/useAuth';
 import AdviceDoctor from '../AdviceDoctor/AdviceDoctor';
 import Category from '../Category/Category';
@@ -11,6 +12,9 @@ const Home = () => {
     
     return (
         <div>
+            <Helmet>
+                <title>Home - PharmaPoint</title>
+            </Helmet>
             <Slider></Slider>
             {/* small cards */}
             <SmallCards></SmallCards>

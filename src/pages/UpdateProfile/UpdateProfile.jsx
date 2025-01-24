@@ -6,6 +6,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoadingSign from "../../Share/LoadingSign/LoadingSign";
 import { useForm } from "react-hook-form"
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
     const { user } = useAuth()
@@ -55,6 +56,9 @@ const UpdateProfile = () => {
 
     return (
         <div className="bg-gray-100 pt-10 min-h-[80vh] flex justify-center items-center">
+             <Helmet>
+                <title>Profile - PharmaPoint</title>
+            </Helmet>
             <div className="bg-white shadow-lg rounded-lg  w-[90%]">
                 {/* Header Section */}
                 <div className="relative">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ReactPaginate from "react-paginate";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 // import LightButton from "../../Share/LightButton/LightButton";
 import { FaRegEye } from "react-icons/fa";
@@ -10,22 +10,40 @@ import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import LoadingSign from "../../Share/LoadingSign/LoadingSign";
+import useCart from "../../Hooks/useCart";
+import useAuth from "../../Hooks/useAuth";
 
 const PaginatedProducts = () => {
   const axiosPublic = useAxiosPublic();
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState('')
   const itemsPerPage = 8;
+  const [sortedProducts, setSortedProducts] = useState([]);
+  const [cart,refetch] = useCart()
+  const {user} = useAuth()
+  
+  
+
+
+  
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["products", currentPage],
+    queryKey: ["products", currentPage,search],
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/products?page=${currentPage}&limit=${itemsPerPage}`
+        `/products?page=${currentPage}&limit=${itemsPerPage}&search=${search}`
       );
+      setSortedProducts(res.data.products)
       return res.data;
     },
     keepPreviousData: true,
+    
   });
+
+
+
+  
+  
 
   const handlePageClick = (event) => {
     setCurrentPage(event.selected + 1); // ReactPaginate uses zero-based indexing
@@ -46,18 +64,32 @@ const PaginatedProducts = () => {
   console.log(categoryData);
 
 
-  // purchase quantity
-  // const [purchaseQuantity, setPurchaseQuantity] = useState(1);
+  const handleSortChange =(e)=>{
+    const value = e.target.value
+    console.log(value);
+    let sortArray = [...sortedProducts]
+    if(value === 'lowToHigh'){
+      sortArray?.sort((a,b)=> parseFloat(a.price) - parseFloat(b.price))
+    }
+    if(value === 'highToLow'){
+       sortArray?.sort((a,b)=> parseFloat(b.price) - parseFloat(a.price))
+    }
+    setSortedProducts(sortArray);
+    
+  }
+  console.log('sorted data ',sortedProducts);
+  
+  
 
-  // const handlepurchaseQuantity = (event) => {
-  //   const value = event.target.value; // Get the current input value
-  //   setPurchaseQuantity(value); // Update the state with the input value
-  // //   console.log("Purchase Quantity:", value); // Log the current value
-  // };
+  
 
   // add to cart 
-
+const navigate = useNavigate()
   const handleSelectToCart = (item) => {
+    if(!user){
+        return navigate("/login")
+    }
+
     Swal.fire({
       title: "Add to Cart?",
       text: "You won't be able to revert this!",
@@ -95,6 +127,7 @@ const PaginatedProducts = () => {
             if (res.data?.message) {
               toast.error(res.data?.message);
             }
+            refetch()
 
           })
       }
@@ -117,7 +150,7 @@ const PaginatedProducts = () => {
 
   if (isLoading)
     return <LoadingSign></LoadingSign>
-  if (error)
+  if (error )
     return <div className="text-center text-gray-500 py-32 text-5xl">NO DATA FOUND</div>;
 
   return (
@@ -126,7 +159,7 @@ const PaginatedProducts = () => {
       <div className="flex justify-end w-[90%] m-auto pb-8 gap-8">
         {/* search */}
         <label className="input input-bordered flex items-center gap-2">
-          <input type="text" className="grow" placeholder="Search" />
+          <input type="text" onChange={e => setSearch(e.target.value)} value={search} className="" placeholder="Search" />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -138,46 +171,60 @@ const PaginatedProducts = () => {
               clipRule="evenodd" />
           </svg>
         </label>
-        <select className="select select-bordered w-[200px]">
-          <option disabled selected>Sort By Price</option>
-          <option>low to high</option>
-          <option>high to low</option>
-        </select>
-
+        <select
+          className="select select-bordered w-[200px]"
         
+          onChange={handleSortChange}
+        >
+          <option value="" disabled>
+            Sort By Price
+          </option>
+          <option value="lowToHigh">Low to High</option>
+          <option value="highToLow">High to Low</option>
+        </select>
       </div>
+
+      {
+          data?.products.length === 0 ? <div className="text-center text-gray-500 py-32 text-5xl">NO DATA FOUND</div> : <>
+           <div className="overflow-x-auto w-[90%] m-auto border">
+       
+       <table className="table">
+         <thead>
+           <tr>
+             <th></th>
+             <th>image</th>
+             <th>Name</th>
+             <th>Company</th> {/**TODO: include the database company field */}
+             <th>Price</th>
+             <th>Add To Cart</th>
+             <th>Details</th>
+           </tr>
+         </thead>
+         <tbody>
+           {
+             sortedProducts?.map((item, index) => <tr key={index}>
+               <th>{index + 1}</th>
+               <td><img src={item?.productPhoto} className="h-16 w-24 object-cover" alt="" /></td>
+               <td>{item?.productName}</td>
+               <td>Dynamic company</td>
+               <td>{item?.price}</td>
+               {/* <td><input type="number" value={purchaseQuantity} onChange={()=>handlepurchaseQuantity(index)} /></td> */}
+               <td><p className="bg-[#4bb4d4a1] w-20 text-center py-1 rounded-full text-[#033B4C] cursor-pointer" onClick={() => handleSelectToCart(item)}>Select</p></td>
+
+               <td><label htmlFor="my_modal_6" ><FaRegEye onClick={() => handleViewDetails(item?._id)} className="bg-[#033B4C] text-white h-10 w-10 p-[10px] rounded-lg  cursor-pointer" /></label></td>
+             </tr>)
+        
+           }
+
+         </tbody>
+       </table>
+     </div>
+          
+          
+          </>
+        }
       {/* Sort */}
-      <div className="overflow-x-auto w-[90%] m-auto border">
-        <table className="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>image</th>
-              <th>Name</th>
-              <th>Company</th> {/**TODO: include the database company field */}
-              <th>Price</th>
-              <th>Add To Cart</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              data?.products?.map((item, index) => <tr key={index}>
-                <th>{index + 1}</th>
-                <td><img src={item?.productPhoto} className="h-16 w-24 object-cover" alt="" /></td>
-                <td>{item?.productName}</td>
-                <td>Dynamic company</td>
-                <td>{item?.price}</td>
-                {/* <td><input type="number" value={purchaseQuantity} onChange={()=>handlepurchaseQuantity(index)} /></td> */}
-                <td><p className="bg-[#4bb4d4a1] w-20 text-center py-1 rounded-full text-[#033B4C] cursor-pointer" onClick={() => handleSelectToCart(item)}>Select</p></td>
-
-                <td><label htmlFor="my_modal_6" ><FaRegEye onClick={() => handleViewDetails(item?._id)} className="bg-[#033B4C] text-white h-10 w-10 p-[10px] rounded-lg  cursor-pointer" /></label></td>
-              </tr>)
-            }
-
-          </tbody>
-        </table>
-      </div>
+     
       
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal" role="dialog">

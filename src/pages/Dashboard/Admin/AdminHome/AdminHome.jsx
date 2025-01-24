@@ -22,9 +22,9 @@ const AdminHome = () => {
     return (
         <div className="w-[90%] m-auto mt-10">
             {/* The admin will see the total sales revenue of the website. Paid total, pending total */}
-            <div className="grid grid-cols-3">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
 
-                <div className="w-[250px] bg-blue-500 rounded-lg h-[120px] flex items-center justify-center gap-4">
+                <div className="md:w-[250px] w-[80%] m-auto bg-blue-500 rounded-lg h-[120px] flex items-center justify-center gap-4">
                     {/* icon */}
                     <FaSellsy className="text-white text-[80px]" />
                     <div className="text-white space-y-4">
@@ -34,7 +34,7 @@ const AdminHome = () => {
 
 
                 </div>
-                <div className="w-[250px] bg-green-500 rounded-lg h-[120px] flex items-center justify-center gap-4">
+                <div className="md:w-[250px] w-[80%] m-auto bg-green-500 rounded-lg h-[120px] flex items-center justify-center gap-4">
                     {/* icon */}
 
                     <FaShoppingBag className="text-white text-[70px]" />
@@ -45,7 +45,7 @@ const AdminHome = () => {
 
 
                 </div>
-                <div className="w-[250px] bg-orange-500 rounded-lg h-[120px] flex items-center justify-center gap-4">
+                <div className="md:w-[250px] w-[80%] m-auto bg-orange-500 rounded-lg h-[120px] flex items-center justify-center gap-4">
                     {/* icon */}
                     <MdOutlinePendingActions className="text-white text-[70px]" />
                     <div className="text-white space-y-4">
@@ -58,12 +58,12 @@ const AdminHome = () => {
 
             </div>
 
-            <div className="lg:flex mt-[60px]">
-                <div className="lg:w-[60%]">
+            <div className="md:flex mt-[60px]">
+                <div className="md:w-[60%]">
 
                 <AdminChart></AdminChart>
                 </div>
-                <div className="lg:w-[40%] m-auto">
+                <div className="md:w-[40%] m-auto">
                     <AdminProgress></AdminProgress>
                 </div>
 

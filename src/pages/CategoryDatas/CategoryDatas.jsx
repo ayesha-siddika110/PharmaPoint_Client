@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 // import LightButton from "../../Share/LightButton/LightButton";
@@ -7,6 +7,7 @@ import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import DashboardHeading from "../../Share/dashboardHeading/DashboardHeading";
+import useAuth from "../../Hooks/useAuth";
 // import { useMutation, useQuery } from "@tanstack/react-query";
 
 
@@ -37,8 +38,13 @@ const CategoryDatas = () => {
     // };
 
     // add to cart 
-
+    const {user} = useAuth()
+    const navigate = useNavigate()
     const handleSelectToCart = (item) => {
+      if(!user){
+          return navigate("/login")
+      }
+  
         Swal.fire({
             title: "Add to Cart?",
             text: "You won't be able to revert this!",

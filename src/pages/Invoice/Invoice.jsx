@@ -11,18 +11,19 @@ import useAuth from "../../Hooks/useAuth";
 const Invoice = () => {
     const pdfRef = useRef()
     const axiospublic = useAxiosPublic()
+    const {user:buyer} = useAuth()
 
     const { refetch, data: payments = [], isLoading } = useQuery({
         queryKey: ['payments'],
         queryFn: async () => {
-            const res = await axiospublic.get(`/payments`)
+            const res = await axiospublic.get(`/payments/${buyer?.email}`)
             return res.data
         }
     })
     console.log(payments);
     const {user} = useAuth()
     
-    const totalPrice = payments.reduce((acc, item) => (acc + item.price)/100, 0)
+    const totalPrice = payments.reduce((acc, item) => (acc + parseFloat(item.price / 100)), 0)
     
 
 
@@ -120,7 +121,7 @@ const Invoice = () => {
                             {payments.map((payment, index) => (
                                 <tr key={payment._id} className="text-center">
                                     <td className="border border-gray-400">{index + 1}</td>
-                                    <td className="border border-gray-400">{payment.productName}</td>
+                                    <td className="border border-gray-400">{payment.productsName}</td>
                                     <td className="border border-gray-400">{parseFloat(payment.price) / 100}tk</td>
                                     <td className="border border-gray-400">{payment.status}</td>
                                 </tr>
