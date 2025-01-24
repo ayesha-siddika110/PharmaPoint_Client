@@ -18,7 +18,7 @@ const SellerHome = () => {
             return res.data
         }
     })
-    console.log(data);
+    // console.log(data);
     const {sellerRevenue,totalPending,totalPaid} = data || {}
 
     return (

@@ -94,7 +94,7 @@ const SalesReport = () => {
                                         payments.map((item, index) => (
                                             <tr key={index} className='textcenter'>
                                                 <td>{index + 1}</td>
-                                                <td>ousodh er name</td>
+                                                <td>squire</td>
 
                                                 {/* <td>
                                                     <p>{item?.sellerEmail}</p>

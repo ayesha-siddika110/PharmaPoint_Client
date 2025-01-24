@@ -66,8 +66,9 @@ const CategoryDatas = () => {
                     sellerName: item?.sellerName,
                     productId: item?._id,
                     sellerEmail: item?.sellerEmail,
+                    buyerEmail: user?.email
                 }
-                console.log(itemData);
+                // console.log(itemData);
 
                 axiospublic.post('/cart', itemData)
                     .then(res => {
@@ -92,7 +93,7 @@ const CategoryDatas = () => {
 
     const [detailItem, setDetailsItem] = useState([])
     const handleViewDetails = (_id) => {
-        console.log(_id);
+        // console.log(_id);
 
         axiospublic(`/products/${_id}`)
             .then(res => {
@@ -100,7 +101,7 @@ const CategoryDatas = () => {
 
             })
     }
-    console.log(detailItem);
+    // console.log(detailItem);
 
     const { category: itemCategory, description, price, productName, productPhoto, quantity, sellerName } = detailItem || {}
   

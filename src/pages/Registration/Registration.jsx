@@ -17,7 +17,7 @@ const Registration = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm()
     const onSubmit = async (data) => {
 
-        console.log(data);
+        // console.log(data);
 
         // image hosting 
         const imageFile = { image: data.image[0] }
@@ -29,7 +29,7 @@ const Registration = () => {
 
         signUpWithEmail(data?.email, data?.password)
             .then(response => {
-                console.log(response)
+                // console.log(response)
 
                 const updateDatas = {
                     displayName: data?.name,
@@ -37,18 +37,18 @@ const Registration = () => {
                 }
                 updateProfileData(updateDatas)
                     .then(response => {
-                        console.log(response);
+                        // console.log(response);
                         const userData = {
                             userName: data?.name,
                             email: data?.email,
                             photo: res.data.data.display_url,
                             role: data?.category
                         }
-                        console.log(userData);
+                        // console.log(userData);
                         
                         axiosPublic.post(`/users/${data?.email}`, userData)
                             .then(res => {
-                                console.log(res.data);
+                                // console.log(res.data);
                                 if (res.data.insertedId) {
                                     toast.success('Successfully Register & save to database')
                                 }

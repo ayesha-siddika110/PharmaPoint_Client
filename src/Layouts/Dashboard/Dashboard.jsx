@@ -46,7 +46,7 @@ const Dashboard = () => {
                         {
                             role === 'seller' && <>
                                 <NavLink to="/dashboard/sellerHome"><LiElement name={"Seller Home"}></LiElement></NavLink>
-                                <NavLink to="/dashboard/addProduct"><LiElement name={"Add Product"}></LiElement></NavLink>
+                                {/* <NavLink to="/dashboard/addProduct"><LiElement name={"Add Product"}></LiElement></NavLink> */}
                                 <NavLink to="/dashboard/manageMedicine"><LiElement name={"Manage Medicine"}></LiElement></NavLink>
                                 <NavLink to="/dashboard/paymentHistory"><LiElement name={"Payment History"}></LiElement></NavLink>
                                 <NavLink to="/dashboard/askForAdvertisement"><LiElement name={"Ask For Advertisement"}></LiElement></NavLink>

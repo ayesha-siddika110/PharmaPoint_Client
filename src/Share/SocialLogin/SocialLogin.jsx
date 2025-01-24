@@ -4,6 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import toast from 'react-hot-toast';
 
 const SocialLogin = () => {
     const {githubLogin, GoogleLogin} = useAuth()
@@ -14,8 +15,9 @@ const SocialLogin = () => {
     const handleGoogleLogin =async()=>{
         GoogleLogin()
         .then(res=>{
-            console.log(res);
+            // console.log(res);
             navigate('/')
+            toast.success('login')
 
 
             const userData = {
@@ -43,7 +45,7 @@ const SocialLogin = () => {
     const handleGithubLogin =()=>{
         githubLogin()
         .then(res=>{
-            console.log(res);
+            // console.log(res);
             navigate('/')
             const userData = {
                 userName : res.user?.displayName,
@@ -69,8 +71,8 @@ const SocialLogin = () => {
         <p className='divider pt-8 pb-6'>OR</p>
         
         <div className='flex justify-center items-center md:gap-6 mx-4'>
-            <div onClick={handleGoogleLogin} className='text-xl px-2 bg-white  flex items-center space-x-2'><FcGoogle /> <span className='text-lg font-semibold'>Google</span></div>
-            <div onClick={handleGithubLogin} className='text-xl px-2 bg-white  flex items-center space-x-2'><FaGithub /><span className='text-lg font-semibold'>Github</span></div>
+            <div onClick={handleGoogleLogin} className='text-xl cursor-pointer px-2 bg-white  flex items-center space-x-2'><FcGoogle /> <span className='text-lg font-semibold'>Google</span></div>
+            {/* <div onClick={handleGithubLogin} className='text-xl px-2 bg-white  flex items-center space-x-2'><FaGithub /><span className='text-lg font-semibold'>Github</span></div> */}
 
         </div>
         </>

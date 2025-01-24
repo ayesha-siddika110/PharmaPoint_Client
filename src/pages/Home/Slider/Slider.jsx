@@ -20,7 +20,8 @@ const Slider = () => {
             return res.data
         }
     })
-    console.log(advertise);
+    const filterbanner = advertise?.filter(item=> item?.status === 'active')
+    // console.log(advertise);
     if(isLoading){
         return <LoadingSign></LoadingSign>
     }
@@ -42,7 +43,7 @@ const Slider = () => {
         className="mySwiper lg:h-[70vh] "
       >
         {
-            advertise?.map((item, index)=><SwiperSlide key={index}><img src={item?.image} className='w-full h-full object-cover ' alt="" /></SwiperSlide>)
+            filterbanner?.map((item, index)=><SwiperSlide key={index}><img src={item?.image} className='w-full h-full object-cover ' alt="" /></SwiperSlide>)
         }
         
       

@@ -12,6 +12,7 @@ const Category = () => {
     
     const [category,refetch, isLoading] = useCategory()
     // console.log(category);
+    
     if(isLoading){
         return <LoadingSign></LoadingSign>
     }

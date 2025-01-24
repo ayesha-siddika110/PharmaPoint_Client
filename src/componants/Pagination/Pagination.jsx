@@ -61,12 +61,12 @@ const PaginatedProducts = () => {
 
       })
   }, [category, setCategoryData, axiospublic])
-  console.log(categoryData);
+  // console.log(categoryData);
 
 
   const handleSortChange =(e)=>{
     const value = e.target.value
-    console.log(value);
+    // console.log(value);
     let sortArray = [...sortedProducts]
     if(value === 'lowToHigh'){
       sortArray?.sort((a,b)=> parseFloat(a.price) - parseFloat(b.price))
@@ -77,7 +77,7 @@ const PaginatedProducts = () => {
     setSortedProducts(sortArray);
     
   }
-  console.log('sorted data ',sortedProducts);
+  // console.log('sorted data ',sortedProducts);
   
   
 
@@ -111,8 +111,9 @@ const navigate = useNavigate()
           sellerName: item?.sellerName,
           productId: item?._id,
           sellerEmail: item?.sellerEmail,
+          buyerEmail: user?.email
         }
-        console.log(itemData);
+        // console.log(itemData);
 
         axiospublic.post('/cart', itemData)
           .then(res => {
@@ -136,7 +137,7 @@ const navigate = useNavigate()
 
   const [detailItem, setDetailsItem] = useState([])
   const handleViewDetails = (_id) => {
-    console.log(_id);
+    // console.log(_id);
 
     axiospublic(`/products/${_id}`)
       .then(res => {
@@ -144,7 +145,7 @@ const navigate = useNavigate()
 
       })
   }
-  console.log(detailItem);
+  // console.log(detailItem);
 
   const { category: itemCategory, description, price, productName, productPhoto, quantity, sellerName } = detailItem || {}
 
@@ -185,7 +186,7 @@ const navigate = useNavigate()
       </div>
 
       {
-          data?.products.length === 0 ? <div className="text-center text-gray-500 py-32 text-5xl">NO DATA FOUND</div> : <>
+          data?.products?.length === 0 ? <div className="text-center text-gray-500 py-32 text-5xl">NO DATA FOUND</div> : <>
            <div className="overflow-x-auto w-[90%] m-auto border">
        
        <table className="table">
@@ -206,7 +207,7 @@ const navigate = useNavigate()
                <th>{index + 1}</th>
                <td><img src={item?.productPhoto} className="h-16 w-24 object-cover" alt="" /></td>
                <td>{item?.productName}</td>
-               <td>Dynamic company</td>
+               <td>{item?.company}</td>
                <td>{item?.price}</td>
                {/* <td><input type="number" value={purchaseQuantity} onChange={()=>handlepurchaseQuantity(index)} /></td> */}
                <td><p className="bg-[#4bb4d4a1] w-20 text-center py-1 rounded-full text-[#033B4C] cursor-pointer" onClick={() => handleSelectToCart(item)}>Select</p></td>

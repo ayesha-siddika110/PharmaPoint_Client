@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
             setUser(currentUser)
             // console.log(import.meta.env.VITE_API_URL);
-            console.log(localStorage.getItem("access-token"));
+            // console.log(localStorage.getItem("access-token"));
             
             
             if (currentUser) {
@@ -85,7 +85,7 @@ const AuthProvider = ({ children }) => {
         }
 
     }, [axiosPublic])
-    console.log(user);
+    // console.log(user);
     
 
     const authInfo = {

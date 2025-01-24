@@ -15,7 +15,7 @@ const ManageMedicine = () => {
             return res.data
         }
     })
-    console.log(products);
+    // console.log(products);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -70,7 +70,7 @@ const ManageMedicine = () => {
                         </thead>
                         <tbody>
                             {
-                                products?.map((item, index) => (
+                                products && products?.map((item, index) => (
                                     <tr key={index} className="text-center h-20">
                                         <td>{index + 1}</td>
 

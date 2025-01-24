@@ -1,14 +1,16 @@
-import React from 'react';
 
-const DiscountCard = () => {
+
+const DiscountCard = ({item}) => {
     return (
-        <div className='h-[400px] p-5 shadow-sm shadow-black border'>
-            <img className='w-full h-[250px] object-cover' src="https://i.ibb.co.com/mBG9t2c/hospital-care-sale-banner-template-23-2151151381.jpg" alt="" />
+        <div className='h-[420px]  p-5 shadow-sm shadow-black border space-y-2'>
+            <img className='w-full h-[250px] object-cover' src={item?.productPhoto} alt="" />
             <div className='flex justify-between  pt-2'>
-                <p className='text-2xl'>Medicine name</p>
-                <p className='text-lg font-semibold text-orange-500'>20% Off</p>
+                <p className='w-[50%] text-lg font-semibold text-orange-500'>Discount :{item?.discount}%</p>
             </div>
-            <p>Company: Squire</p>
+            
+            <p className='text-2xl text-black'>{item?.productName}</p>
+            <p>Company: {item?.company}</p>
+            <p>Category: {item?.category}</p>
         </div>
     );
 };

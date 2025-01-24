@@ -4,6 +4,7 @@ import SocialLogin from '../../Share/SocialLogin/SocialLogin';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
+import toast from 'react-hot-toast';
 
 
 
@@ -12,10 +13,11 @@ const Login = () => {
     const {signInwithEmail} = useAuth()
     const { register, handleSubmit, formState: { errors }, } = useForm()
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         signInwithEmail(data?.email, data?.password)
         .then(res=>{
-            console.log(res);
+            // console.log(res);
+            toast.success('Sign In')
             navigate("/")            
         })
         .catch(err=>{

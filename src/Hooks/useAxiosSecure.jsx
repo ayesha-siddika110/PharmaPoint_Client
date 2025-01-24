@@ -4,7 +4,7 @@ import useAuth from './useAuth';
 // import React from 'react';
 
 const axiosSecure = axios.create({
-    baseURL: 'https://medicine-selling-e-commerce-server.vercel.app'
+    baseURL: 'https://medicine-selling-e-commerce-server.vercel.app/'
 })
 
 const useAxiosSecure = () => {
@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
 
     axiosSecure.interceptors.request.use(function(config){
         const token = localStorage.getItem('access-token')
-        console.log(token);
+        // console.log(token);
         
         config.headers.authorization = `bearer ${token}`
         return config

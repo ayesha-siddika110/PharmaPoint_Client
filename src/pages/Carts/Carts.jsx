@@ -7,6 +7,9 @@ import useCart from '../../Hooks/useCart';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import useAuth from '../../Hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
 
 const Carts = () => {
     const [cart, refetch, isLoading] = useCart()
@@ -44,15 +47,28 @@ const Carts = () => {
 
     }
 
+    const axiosPublic = useAxiosPublic()
+    const {user} = useAuth()
+    // const { data: cart = [] } = useQuery({
+    //     queryKey: ['cart'],
+    //     queryFn: async () => {
+    //         const res = await axiosPublic.get(`/cart/${user?.email}`)
+    //         return res.data
+    //     }
+    // })
+    // console.log(cart);
+    const filtercart = cart?.filter(item=> item?.buyerEmail === user?.email)
+    
+
     //   sum the price
     const [totalPrices, setTotalPrices] = useState()
 
-    const totalPrice = cart.reduce((total, item) => {
+    const totalPrice = filtercart.reduce((total, item) => {
         return total + parseFloat(item.price);
     }, 0);
     
 
-    console.log(totalPrice);
+    // console.log(totalPrice);
 
 
     return (
@@ -92,7 +108,7 @@ const Carts = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        cart?.map((item, index) => <tr key={index}>
+                                        filtercart?.map((item, index) => <tr key={index}>
                                             <th>{index + 1}</th>
                                             <td><img src={item?.productPhoto} className="h-16 w-24 object-cover" alt="" /></td>
                                             <td>
@@ -103,7 +119,7 @@ const Carts = () => {
 
                                             <td>
 
-                                               <p>{item?.quantity}</p>
+                                               <p>1</p>
 
                                             </td>
                                             <td>{item?.price}</td>

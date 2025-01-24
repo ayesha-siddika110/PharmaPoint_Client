@@ -14,7 +14,7 @@ const useRole = () => {
             return res?.data?.role
         }
     })
-    console.log(role);
+    // console.log(role);
     if(isloading){
         return <LoadingSign></LoadingSign>
     }

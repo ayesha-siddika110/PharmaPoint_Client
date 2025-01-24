@@ -6,12 +6,15 @@ import useAdvertise from "../../../../Hooks/useAdvertise";
 import { useState } from "react";
 import { ImSpinner9 } from "react-icons/im";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-import axios from "axios";
+
+import useAuth from "../../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 
 
 const AskForAdvertisement = () => {
-    const [advertise, refetch, isLoading] = useAdvertise();
+    const [, refetch, isLoading] = useAdvertise();
+    // const [advertise, setAdvertise] = useState([])
 
     const image_hosting_key = import.meta.env.VITE_ImageBB_apiKey;
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -19,9 +22,10 @@ const AskForAdvertisement = () => {
 
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic()
+    const {user} = useAuth()
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const onSubmit = async (data) => {
-        // console.log(data);
+
         const imageFile = { image: data.image[0] }
         setLoading(true)
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -30,11 +34,11 @@ const AskForAdvertisement = () => {
             }
         });
         
-        const alldata = { ...data, image: res.data.data.display_url }
-        console.log(alldata);
+        const alldata = { ...data, image: res.data.data.display_url, sellerEmail: user?.email }
 
 
-        axiosSecure.post('https://medicine-selling-e-commerce-server.vercel.app/advertise', alldata)
+
+        axiosSecure.post('/advertise', alldata)
             .then(res => {
                 setLoading(false)
                 refetch()
@@ -52,10 +56,14 @@ const AskForAdvertisement = () => {
 
     }
 
-    console.log(advertise);
 
-    const [advertiseUpdate, setCategoryUpdate] = useState()
-    console.log(advertiseUpdate);
+    const {data:advertise} = useQuery({
+        queryKey: ['advertise'],
+        queryFn: async()=>{
+            const res = await axiosPublic.get(`/advertise/${user?.email}`)
+            return res.data
+        }
+    })
     
     // const handleUpdate = (e) => {
     //     e.preventDefault()

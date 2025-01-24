@@ -16,7 +16,7 @@ const AdminHome = () => {
 
         }
     })
-    console.log(adminData);
+    // console.log(adminData);
     const { totalRevenue, totalPaid , totalPending } = adminData || {}
 
     return (

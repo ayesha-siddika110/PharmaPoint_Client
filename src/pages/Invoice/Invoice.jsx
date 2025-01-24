@@ -20,7 +20,7 @@ const Invoice = () => {
             return res.data
         }
     })
-    console.log(payments);
+    // console.log(payments);
     const {user} = useAuth()
     
     const totalPrice = payments.reduce((acc, item) => (acc + parseFloat(item.price / 100)), 0)

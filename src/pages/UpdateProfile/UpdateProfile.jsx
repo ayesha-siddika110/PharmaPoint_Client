@@ -19,14 +19,14 @@ const UpdateProfile = () => {
       } = useForm()
     
       const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
         const updatedata = {
             userName: data?.userName,
             photo: data?.photo,
         }
         axiosSecure.patch(`/users/${profile?._id}`,updatedata )
         .then(res=>{
-            console.log(res);
+            // console.log(res);
             if(res.data.modifiedCount>0){
                 toast.success('Profile Updated')
                 refetch()
@@ -42,7 +42,7 @@ const UpdateProfile = () => {
             return res.data
         }
     })
-    console.log(profile);
+    // console.log(profile);
 
 
     if (isLoading) {

@@ -6,6 +6,7 @@ import { BsCart2 } from "react-icons/bs";
 import useCart from "../../Hooks/useCart";
 import './Navbar.css'
 import useRole from "../../Hooks/useRole";
+import toast from "react-hot-toast";
 
 
 
@@ -15,7 +16,8 @@ const Navbar = () => {
     const handleSignOut = () => {
         signOutUser()
             .then(res => {
-                console.log(res);
+                // console.log(res);
+                toast.success('Sign Out')
 
             })
             .catch(err => {
@@ -25,7 +27,7 @@ const Navbar = () => {
 
     }
   
-    const [cart,refetch, isLoading] = useCart()
+    const [cart,refetch, isLoading, filtercart] = useCart()
     const [role] = useRole()
     
 
@@ -99,7 +101,7 @@ const Navbar = () => {
                             tabIndex={0}
                             className={`menu space-y-3 menu-sm dropdown-content rounded-box z-50 bg-[#033B4C] mt-3 w-52 p-3 shadow-lg `}>
                             {links}
-                            <Link to="/carts" className='flex gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart ({cart.length})</span></Link>
+                            <Link to="/carts" className='flex gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart ({filtercart.length})</span></Link>
                         </ul>
                     </div>
 
