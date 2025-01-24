@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
             
             if (currentUser) {
                 // save data user
-                // await axios.post(`http://localhost:3000/users/${currentUser?.email}`,{
+                // await axios.post(`https://medicine-selling-e-commerce-server.vercel.app/users/${currentUser?.email}`,{
                 //     name: currentUser?.displayName,
                 //     image: currentUser?.photoURL,
                 //     email: currentUser?.email,

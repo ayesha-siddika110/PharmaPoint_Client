@@ -34,7 +34,7 @@ const AskForAdvertisement = () => {
         console.log(alldata);
 
 
-        axiosSecure.post('http://localhost:3000/advertise', alldata)
+        axiosSecure.post('https://medicine-selling-e-commerce-server.vercel.app/advertise', alldata)
             .then(res => {
                 setLoading(false)
                 refetch()

@@ -23,7 +23,7 @@ const Carts = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
 
-            axios.delete(`http://localhost:3000/cart/${id}`)
+            axios.delete(`https://medicine-selling-e-commerce-server.vercel.app/cart/${id}`)
                 .then(res => {
                     if (res.data.deletedCount > 0) {
                         if (result.isConfirmed) {

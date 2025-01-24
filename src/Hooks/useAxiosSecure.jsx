@@ -4,7 +4,7 @@ import useAuth from './useAuth';
 // import React from 'react';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://medicine-selling-e-commerce-server.vercel.app'
 })
 
 const useAxiosSecure = () => {

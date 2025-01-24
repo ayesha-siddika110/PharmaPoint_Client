@@ -8,7 +8,7 @@ const UserPaymentHistory = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
     // const [data,setdata] = useState([])
-    // axios.get(`http://localhost:3000/payments/ayeshamail418109@gmail.com`)
+    // axios.get(`https://medicine-selling-e-commerce-server.vercel.app/payments/ayeshamail418109@gmail.com`)
     // .then(res=>{
     //     setdata(res.data);
 
