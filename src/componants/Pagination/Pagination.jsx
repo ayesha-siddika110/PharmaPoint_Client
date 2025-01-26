@@ -4,7 +4,6 @@ import ReactPaginate from "react-paginate";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-// import LightButton from "../../Share/LightButton/LightButton";
 import { FaRegEye } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
@@ -157,7 +156,7 @@ const navigate = useNavigate()
   return (
     <div className="">
      
-      <div className="flex justify-end w-[90%] m-auto pb-8 gap-8">
+      <div className="md:flex justify-end w-[90%] m-auto pb-8 gap-8">
         {/* search */}
         <label className="input input-bordered flex items-center gap-2">
           <input type="text" onChange={e => setSearch(e.target.value)} value={search} className="" placeholder="Search" />

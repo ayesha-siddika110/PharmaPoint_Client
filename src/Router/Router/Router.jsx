@@ -28,11 +28,13 @@ import UserRoute from "../UserRoute/UserRoute";
 import AdminHome from "../../pages/Dashboard/Admin/AdminHome/AdminHome";
 import Shop from "../../pages/Shop/Shop";
 import UpdateProfile from "../../pages/UpdateProfile/UpdateProfile";
+import ErrorPage from "../../componants/ErrorPage/ErrorPage";
 
 export  const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
           path: "/",
@@ -80,6 +82,7 @@ export  const router = createBrowserRouter([
     {
       path: "/dashboard",
       element: <Dashboard></Dashboard>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
        
         // admin route
