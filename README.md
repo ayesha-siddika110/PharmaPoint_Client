@@ -68,10 +68,12 @@ To add a banner image to your website, follow these steps:
 1. **Admin Dashboard page**  
    <img src="./src/assets/readme/dashboard.PNG" alt="Medicine Selling Website Banner" />
 
-## Admin User Email & Password
+## Admin and Seller Email & Password
 
 admin mail : ayeshaadmin123@gmail.com
 admin pass : AYEsha123@#
+seller mail : ayeshaseller123@gmail.com
+seller pass : AYEsha123@#
 
 ## Live Site Link
 [https://pharmapoint123.netlify.app/]
