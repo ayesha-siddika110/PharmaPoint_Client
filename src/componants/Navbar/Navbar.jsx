@@ -7,6 +7,9 @@ import useCart from "../../Hooks/useCart";
 import './Navbar.css'
 import useRole from "../../Hooks/useRole";
 import toast from "react-hot-toast";
+import { IoHomeOutline } from "react-icons/io5";
+import { CiLocationArrow1, CiShoppingBasket } from "react-icons/ci";
+import { LuHandshake } from "react-icons/lu";
 
 
 
@@ -31,8 +34,10 @@ const Navbar = () => {
 
 
     const links = <>
-        <NavLink className={'flex text-white rounded-full'} to="/"><p className="py-1  px-5">Home</p></NavLink>
-        <NavLink className={' flex text-white rounded-full'} to="/shop"><p className="py-1  px-5">Shop</p></NavLink>
+        <NavLink className={'flex text-white  space-x-2 justify-center items-center px-2'} to="/"><IoHomeOutline /><p className="py-1">Home</p></NavLink>
+        <NavLink className={' flex text-white  space-x-2 justify-center items-center px-2'} to="/shop"><CiShoppingBasket className="text-xl" /><p className="py-1 ">Shop</p></NavLink>
+        <NavLink className={' flex text-white  space-x-2 justify-center items-center px-2'} to="/shop"><CiLocationArrow1 className="text-xl" /><p className="py-1 ">Contact</p></NavLink>
+        <NavLink className={' flex text-white  space-x-2 justify-center items-center px-2'} to="/shop"><LuHandshake className="text-xl" /><p className="py-1 ">Support</p></NavLink>
         {/* <NavLink to="/language">Languages</NavLink> */}
 
     </>
@@ -78,11 +83,11 @@ const Navbar = () => {
 
     </>
     return (
-        <div className={`bg-[#033B4C] text-white sticky top-0 z-50`}>
-            <div className={`navbar  w-[90%] m-auto flex justify-between`}>
-                <div className="navbar-start">
+        <div className={`bg-[#033B4C] text-white sticky top-0 z-50 py-1`}>
+            <div className={`  w-[90%] m-auto flex justify-between items-center`}>
+                <div className=" flex justify-start items-center">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="lg:hidden pr-6">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -98,16 +103,16 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className={`menu space-y-3 menu-sm dropdown-content rounded-box z-50 bg-[#033B4C] mt-3 w-52 p-3 shadow-lg `}>
+                            className={`menu space-y-3 menu-sm dropdown-content rounded-lg z-50 bg-[#033B4C] mt-3 p-6  shadow-lg w-56`}>
                             {links}
-                            <Link to="/carts" className='flex gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart ({filtercart.length})</span></Link>
+                            <NavLink to="/carts" className='flex gap-2 pr-3 items-center justify-center text-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20 text-center ">My Cart ({filtercart.length})</span></NavLink>
                         </ul>
                     </div>
 
-                    <img src={logo} className="md:h-16 " alt="" />
+                    <img src={logo} className="md:h-16 h-16 " alt="" />
 
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className=" hidden lg:flex">
                     <ul className="flex justify-center items-center space-x-3">
                         {links}
                     </ul>

@@ -1,12 +1,12 @@
 /* hover:bg-white hover:py-3 py-2 rounded-xl cursor-pointer w-[120%]  hover:text-[#033B4C] pl-2 */
 
 .active{
-    background-color: white;
+    
     padding-top: 3px;
     padding-bottom: 3px;
-    border-radius: 10px;
+    border-radius: 2px;
     cursor: pointer;
-    width: 120%;
-    color: #033B4C;
+    width: 100%;
     padding-left: 2px;
+    border-bottom: 1px solid #fff;
 }
