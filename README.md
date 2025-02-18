@@ -1,6 +1,4 @@
 
-
-
 ## PharmaPoint [Multi-Vendor Medicine Selling E-commerce Website]
 This is a full-stack web application for selling medicines online. The website includes an admin panel, seller and user dashboards, payment systems, private routing, and data visualizations. The site is built with React, MongoDB, and various modern web technologies.
 

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ReactPaginate from "react-paginate";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useNavigate} from "react-router-dom";
+// import { useEffect } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
@@ -48,18 +48,20 @@ const PaginatedProducts = () => {
     setCurrentPage(event.selected + 1); // ReactPaginate uses zero-based indexing
   };
 
-  const { category } = useParams()
+  // const { category } = useParams()
 
   const axiospublic = useAxiosPublic()
-  const [categoryData, setCategoryData] = useState([])
+  // const [categoryData, setCategoryData] = useState([])
 
-  useEffect(() => {
-    axiospublic(`/products/${category}`)
-      .then(res => {
-        setCategoryData(res.data);
+ 
 
-      })
-  }, [category, setCategoryData, axiospublic])
+  // useEffect(() => {
+  //   axiospublic.get(`/products/${category}`)
+  //     .then(res => {
+  //       setCategoryData(res.data);
+
+  //     })
+  // }, [category, setCategoryData, axiospublic])
   // console.log(categoryData);
 
 

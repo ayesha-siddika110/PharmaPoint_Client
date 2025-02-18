@@ -16,7 +16,6 @@ const Navbar = () => {
     const handleSignOut = () => {
         signOutUser()
             .then(res => {
-                // console.log(res);
                 toast.success('Sign Out')
 
             })
@@ -26,14 +25,14 @@ const Navbar = () => {
             })
 
     }
-  
-    const [cart,refetch, isLoading, filtercart] = useCart()
+
+    const [cart, refetch, isLoading, filtercart] = useCart()
     const [role] = useRole()
-    
+
 
     const links = <>
-        <NavLink className={'text-center px-5 h-10 flex justify-center items-center'}  to="/">Home</NavLink>
-        <NavLink className={'text-center px-5 h-10 flex justify-center items-center'} to="/shop">Shop</NavLink>
+        <NavLink className={'flex text-white rounded-full'} to="/"><p className="py-1  px-5">Home</p></NavLink>
+        <NavLink className={' flex text-white rounded-full'} to="/shop"><p className="py-1  px-5">Shop</p></NavLink>
         {/* <NavLink to="/language">Languages</NavLink> */}
 
     </>
@@ -65,8 +64,8 @@ const Navbar = () => {
                                 {
                                     role === 'user' && <Link to={`/dashboard/userPaymentHistory`} className="py-2 border-b border-[#033B4C] hover:bg-[#033b4c42] pl-3">Dashboard</Link>
                                 }
-                                
-                                </li>
+
+                            </li>
 
                             <li className="py-2  hover:bg-[#033b4c42] pl-3 " onClick={handleSignOut}>Log Out</li>
                         </ul>
@@ -109,13 +108,13 @@ const Navbar = () => {
 
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className=" flex gap-8  w-[200px]  text-center items-center">
+                    <ul className="flex justify-center items-center space-x-3">
                         {links}
                     </ul>
                 </div>
                 <div className="">
                     <div className="flex justify-between items-center ">
-                        <Link to="/carts" className='md:flex hidden gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart ({cart.length})</span></Link>
+                        <Link to="/carts" className='md:flex hidden gap-2 pr-3 items-center'><BsCart2 className='font-bold text-lg ' /><span className="w-20">My Cart ({filtercart?.length})</span></Link>
                         {profile}
 
                     </div>

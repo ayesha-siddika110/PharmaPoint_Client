@@ -18,11 +18,11 @@ const Discount = () => {
             return res.data
         }
     })
-    console.log('products', products);
+    // console.log('products', products);
 
 
     const filterproduct = products?.products?.filter(product => parseFloat(product.discount) > 0);
-    console.log(filterproduct);
+    // console.log(filterproduct);
     
 
     return (

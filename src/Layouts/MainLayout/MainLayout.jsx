@@ -9,7 +9,7 @@ const MainLayout = () => {
     const location = useLocation()
     const path = location.pathname === '/login' || location.pathname === '/register'
     return (
-        <div className='roboto-font font-semibold'>
+        <div className='roboto-font font-semibold bg-slate-200'>
             <ToastContainer />
             <Toaster/>
             {path || <Navbar></Navbar>}
