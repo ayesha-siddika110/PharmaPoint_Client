@@ -190,36 +190,43 @@ const navigate = useNavigate()
           data?.products?.length === 0 ? <div className="text-center text-gray-500 py-32 text-5xl">NO DATA FOUND</div> : <>
            <div className="overflow-x-auto w-[90%] m-auto border">
        
-       <table className="table">
-         <thead>
-           <tr>
-             <th></th>
-             <th>image</th>
-             <th>Name</th>
-             <th>Company</th> {/**TODO: include the database company field */}
-             <th>Price</th>
-             <th>Add To Cart</th>
-             <th>Details</th>
-           </tr>
-         </thead>
-         <tbody>
+       <>
+         
+         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-5">
            {
-             sortedProducts?.map((item, index) => <tr key={index}>
-               <th>{index + 1}</th>
-               <td><img src={item?.productPhoto} className="h-16 w-24 object-cover" alt="" /></td>
-               <td>{item?.productName}</td>
-               <td>{item?.company}</td>
-               <td>{item?.price}</td>
-               {/* <td><input type="number" value={purchaseQuantity} onChange={()=>handlepurchaseQuantity(index)} /></td> */}
-               <td><p className="bg-[#4bb4d4a1] w-20 text-center py-1 rounded-full text-[#033B4C] cursor-pointer" onClick={() => handleSelectToCart(item)}>Select</p></td>
+             sortedProducts?.map((item, index) => 
+              <div key={index} className="bg-white p-5 text-center relative">
+             <img src={item?.productPhoto} className="w-full h-[150px]  object-cover" alt="" />
+             <p className="absolute top-5 right-5 bg-black text-white p-1">{item?.discount} Off</p>
+             <p className="font-semibold pt-2">{item?.productName}</p>
+             <p className="text-start py-1">Company : {item?.company}</p>
+             <p className="text-start">Price: {item?.price}</p>
+             <div className="space-x-3">
 
-               <td><label htmlFor="my_modal_6" ><FaRegEye onClick={() => handleViewDetails(item?._id)} className="bg-[#033B4C] text-white h-10 w-10 p-[10px] rounded-lg  cursor-pointer" /></label></td>
-             </tr>)
+             <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleSelectToCart(item)}>Buy Now</button>
+             <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleViewDetails(item?._id)}>View Details</button>
+             </div>
+           
+             {/* <CardButton text={"Buy Now"}></CardButton> */}
+         </div>
+              
+            //  <tr key={index}>
+            //    <th>{index + 1}</th>
+            //    <td><img src={item?.productPhoto} className="h-16 w-24 object-cover" alt="" /></td>
+            //    <td>{item?.productName}</td>
+            //    <td>{item?.company}</td>
+            //    <td>{item?.price}</td>
+            //    {/* <td><input type="number" value={purchaseQuantity} onChange={()=>handlepurchaseQuantity(index)} /></td> */}
+            //    <td></td>
+
+            //    <td></td>
+            //  </tr>
+             )
         
            }
 
-         </tbody>
-       </table>
+         </div>
+       </>
      </div>
           
           

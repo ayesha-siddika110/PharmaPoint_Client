@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import LoadingSign from '../../Share/LoadingSign/LoadingSign';
 
 const Carts = () => {
     const [cart, refetch, isLoading] = useCart()
@@ -77,7 +78,7 @@ const Carts = () => {
                 <title>My Cart - PharmaPoint</title>
             </Helmet>
             {
-                isLoading && <p className='animate-spin text-7xl w-[100%] h-[60vh] flex items-center justify-center '><ImSpinner3 /></p>
+                isLoading && <LoadingSign></LoadingSign>
             }
             {
                 isLoading || <>

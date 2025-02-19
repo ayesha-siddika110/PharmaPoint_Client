@@ -29,6 +29,8 @@ import AdminHome from "../../pages/Dashboard/Admin/AdminHome/AdminHome";
 import Shop from "../../pages/Shop/Shop";
 import UpdateProfile from "../../pages/UpdateProfile/UpdateProfile";
 import ErrorPage from "../../componants/ErrorPage/ErrorPage";
+import Contact from "../../pages/Contact/Contact";
+import Support from "../../pages/Support/support";
 
 export  const router = createBrowserRouter([
     {
@@ -43,6 +45,14 @@ export  const router = createBrowserRouter([
         {
           path: "/shop",
           element: <Shop></Shop>
+        },
+        {
+          path: "/contact",
+          element: <Contact></Contact>
+        },
+        {
+          path: "/support",
+          element: <Support></Support>
         },
         {
           path: "/login",
