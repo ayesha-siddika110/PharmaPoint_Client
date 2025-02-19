@@ -37,7 +37,7 @@ const Navbar = () => {
         <NavLink className={'flex text-white  space-x-2 justify-center items-center px-2'} to="/"><IoHomeOutline /><p className="py-1">Home</p></NavLink>
         <NavLink className={' flex text-white  space-x-2 justify-center items-center px-2'} to="/shop"><CiShoppingBasket className="text-xl" /><p className="py-1 ">Shop</p></NavLink>
         <NavLink className={' flex text-white  space-x-2 justify-center items-center px-2'} to="/contact"><CiLocationArrow1 className="text-xl" /><p className="py-1 ">Contact</p></NavLink>
-        <NavLink className={' flex text-white  space-x-2 justify-center items-center px-2'} to="/support"><LuHandshake className="text-xl" /><p className="py-1 ">Support</p></NavLink>
+        {/* <NavLink className={' flex text-white  space-x-2 justify-center items-center px-2'} to="/support"><LuHandshake className="text-xl" /><p className="py-1 ">Support</p></NavLink> */}
         {/* <NavLink to="/language">Languages</NavLink> */}
 
     </>
