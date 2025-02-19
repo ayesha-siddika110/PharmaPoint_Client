@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 const Registration = () => {
     const navigate = useNavigate()
@@ -68,6 +69,16 @@ const Registration = () => {
             })
 
     }
+    const [useCre, setUseCre] = useState(true)
+    const [useAdmin, setAdmin] = useState(false)
+    const handleCredential = (Credential)=>{
+        console.log(Credential);
+        if(Credential === 'user'){
+            setUseCre(true)
+        }
+        if(Credential === 'admin'){
+            setUseCre(false)}
+    }
 
     return (
         <div
@@ -87,6 +98,13 @@ const Registration = () => {
 
                 <form onSubmit={handleSubmit(onSubmit)} className=' bg-white bg-opacity-30 lg:m-6 w-[100%] md:w-[50%] lg:w-[40%]  lg:p-10 p-5 space-y-3 border'>
                     <p className='text-4xl text-center text-black font-semibold'>Register Now!</p>
+                    <div className=' divider py-6 text-center font-semibold'>Select Credential</div>
+                    <div className='flex items-center justify-center gap-4'>
+                    <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleCredential('user')}>User Credential</button>
+                    <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleCredential('admin')}>Admin Credential</button>
+
+                    </div>
+                    <div className=' divider py-6 text-center font-semibold'>Or Normal User</div>
                     <div className='form-control'>
                         <p className='text-black'>Name *</p>
 

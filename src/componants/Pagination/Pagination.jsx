@@ -204,6 +204,7 @@ const navigate = useNavigate()
              <div className="space-x-3">
 
              <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleSelectToCart(item)}>Buy Now</button>
+
              <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleViewDetails(item?._id)}>View Details</button>
              </div>
            
