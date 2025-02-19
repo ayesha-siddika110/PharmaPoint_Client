@@ -69,15 +69,21 @@ const Registration = () => {
             })
 
     }
-    const [useCre, setUseCre] = useState(true)
-    const [useAdmin, setAdmin] = useState(false)
+    const [userCre, setUseCre] = useState(true)
+    const [admin, setAdmin] = useState(false)
+
     const handleCredential = (Credential)=>{
         console.log(Credential);
         if(Credential === 'user'){
             setUseCre(true)
+            setAdmin(false)
         }
         if(Credential === 'admin'){
-            setUseCre(false)}
+            setAdmin(true)
+            setUseCre(false)
+            navigate('/login')
+
+        }
     }
 
     return (
@@ -100,8 +106,10 @@ const Registration = () => {
                     <p className='text-4xl text-center text-black font-semibold'>Register Now!</p>
                     <div className=' divider py-6 text-center font-semibold'>Select Credential</div>
                     <div className='flex items-center justify-center gap-4'>
-                    <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleCredential('user')}>User Credential</button>
-                    <button className="border rounded-full border-[#033B4C] hover:border-black hover:text-[#ffffff] hover:bg-black mt-2 p-1 px-4 " onClick={() => handleCredential('admin')}>Admin Credential</button>
+
+                    <button className={`border rounded-full border-[#033B4C] hover:border-black ${userCre && 'bg-black text-white'}  mt-2 p-1 px-4`} onClick={() => handleCredential('user')}>User Credential</button>
+
+                    <button className={`border rounded-full border-[#033B4C] hover:border-black ${admin && 'bg-black text-white'} mt-2 p-1 px-4`} onClick={() => handleCredential('admin')}>Admin Credential</button>
 
                     </div>
                     <div className=' divider py-6 text-center font-semibold'>Or Normal User</div>
